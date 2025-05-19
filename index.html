@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>My GitHub Projects</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 2rem;
+      background: #f4f4f4;
+      color: #333;
+    }
+    h1 {
+      text-align: center;
+    }
+    .repo-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1.5rem;
+    }
+    .repo-card {
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      padding: 1rem;
+      width: 300px;
+    }
+    .repo-card h3 {
+      margin-top: 0;
+    }
+    .repo-card a {
+      text-decoration: none;
+      color: #0366d6;
+    }
+  </style>
+</head>
+<body>
+  <h1>My GitHub Projects</h1>
+  <div class="repo-container" id="repos"></div>
+
+  <script>
+    const username = "YOUR_GITHUB_USERNAME";
+    const repoContainer = document.getElementById("repos");
+
+    fetch(`https://api.github.com/users/${username}/repos?sort=updated`)
+      .then(response => response.json())
+      .then(repos => {
+        repos.slice(0, 6).forEach(repo => {
+          const repoCard = document.createElement("div");
+          repoCard.className = "repo-card";
+          repoCard.innerHTML = `
+            <h3><a href="${repo.html_url}" target="_blank">${repo.name}</a></h3>
+            <p>${repo.description || "No description provided."}</p>
+            <p>⭐ ${repo.stargazers_count} | 🍴 ${repo.forks_count}</p>
+          `;
+          repoContainer.appendChild(repoCard);
+        });
+      })
+      .catch(error => {
+        repoContainer.innerHTML = `<p>Could not load GitHub projects.</p>`;
+        console.error("Error fetching repos:", error);
+      });
+  </script>
+</body>
+</html>
