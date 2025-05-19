@@ -1,2 +1,2 @@
-# Resume
-My latest resume
+# **Resume**
+My latest resume and current projects are listed here.
