@@ -7,6 +7,8 @@
   <style>
     body {font-family: Arial, sans-serif; margin: 2rem; background: #f4f4f4; color: #333;}
     h1 {text-align: center;}
+    .search-bar {text-align: center; margin-bottom: 1.5rem;}
+    .search-bar input {padding: 0.5rem; width: 60%; max-width: 400px; border: 1px solid #ccc; border-radius: 4px;}
     .repo-container {display: flex; flex-wrap: wrap; justify-content: center; gap: 1.5rem;}
     .repo-card {background: white;border-radius: 8px; box-shadow: 0 2px 6px rgba(0,0,0,0.1); padding: 1rem; width: 300px;}
     .repo-card h3 {margin-top: 0;}
@@ -15,30 +17,63 @@
 </head>
 <body>
   <h1>My GitHub Projects</h1>
+  <div class="search-bar">
+    <input type="text" id="searchInput" placeholder="Search repositories...">
+  </div>
   <div class="repo-container" id="repos"></div>
 
   <script>
     const username = "alekrodriguezresume";
     const repoContainer = document.getElementById("repos");
+    const searchInput = document.getElementById("searchInput");
+    let allRepos = [];
 
-    fetch(`https://api.github.com/users/${username}/repos?sort=updated`)
-      .then(response => response.json())
+    repoContainer.innerHTML = "<p>Loading repositories...</p>";
+
+    fetch(`https://api.github.com/users/${username}/repos?per_page=100`)
+      .then(response => {
+        if (!response.ok) throw new Error("Network response was not ok");
+        return response.json();
+      })
       .then(repos => {
-        repos.slice(0, 6).forEach(repo => {
-          const repoCard = document.createElement("div");
-          repoCard.className = "repo-card";
-          repoCard.innerHTML = `
-            <h3><a href="${repo.html_url}" target="_blank">${repo.name}</a></h3>
-            <p>${repo.description || "No description provided."}</p>
-            <p>⭐ ${repo.stargazers_count} | 🍴 ${repo.forks_count}</p>
-          `;
-          repoContainer.appendChild(repoCard);
-        });
+        allRepos = repos
+          .filter(r => !r.fork)
+          .sort((a, b) => b.stargazers_count - a.stargazers_count)
+          .slice(0, 6);
+        renderRepos(allRepos);
       })
       .catch(error => {
-        repoContainer.innerHTML = `<p>Could not load GitHub projects.</p>`;
+        repoContainer.innerHTML = `<p>Could not load GitHub projects. (${error.message})</p>`;
         console.error("Error fetching repos:", error);
       });
+
+    function renderRepos(repos) {
+      repoContainer.innerHTML = "";
+      if (repos.length === 0) {
+        repoContainer.innerHTML = "<p>No repositories found.</p>";
+        return;
+      }
+      repos.forEach(repo => {
+        const repoCard = document.createElement("div");
+        repoCard.className = "repo-card";
+        repoCard.innerHTML = `
+          <h3><a href="${repo.html_url}" target="_blank" aria-label="GitHub link to ${repo.name}">${repo.name}</a></h3>
+          <p>${repo.description || "No description provided."}</p>
+          <p>⭐ ${repo.stargazers_count} | 🍴 ${repo.forks_count}</p>
+        `;
+        repoContainer.appendChild(repoCard);
+      });
+    }
+
+    searchInput.addEventListener("input", () => {
+      const query = searchInput.value.toLowerCase();
+      const filtered = allRepos.filter(repo =>
+        repo.name.toLowerCase().includes(query) ||
+        (repo.description && repo.description.toLowerCase().includes(query))
+      );
+      renderRepos(filtered);
+    });
   </script>
 </body>
 </html>
+
