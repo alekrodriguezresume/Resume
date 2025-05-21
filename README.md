@@ -1,2 +1,51 @@
-# **Resume**
-My latest resume and current projects are listed
+# Aleksander R. Rodriguez Kozlowski | Interactive Resume
+
+Welcome to my personal resume website. I built this site to give a quick, professional overview of who I am, what I’ve done, and what I can offer.
+
+I'm a detail-focused professional with experience in program analysis, quality management, and government records tracking. I enjoy solving problems, building systems that work better, and learning new tools that make life easier. Whether it's leading a project, creating dashboards, or tuning engines — I get the job done.
+
+This website shows some of my GitHub projects, and it's built using HTML, CSS, and JavaScript. It automatically updates to show the latest work from my GitHub account.
+
+## Highlights
+
+- Built to show my GitHub projects with live search and sorting
+- Fully responsive (works on phones, tablets, and desktops)
+- Easy to update and expand with more resume info
+- Clean design and user-friendly layout
+
+## About Me
+
+- **Graduated:** Bachelor’s in Project Management, Arizona State University (2025)
+- **Current Role:** Management and Program Analyst Intern – USDA, PPQ Records & Info Management
+- **Focus Areas:** Program development, records management, risk analysis, and team collaboration
+- **Tools I Use:** GitHub, Power BI, SharePoint, TunerPro, Excel, Fusion 360, and more
+- **Creative Side:** I run **FTR Garage**, restoring and upgrading my 2004 Chevy Silverado HD — and sharing the journey on YouTube
+
+## Projects
+
+The "GitHub Projects" section below pulls directly from my GitHub account. It shows the work I’ve done on coding, automation, and other tools. Use the search bar to filter projects by name or keywords.
+
+## How I Built This
+
+This site is made with:
+
+- **HTML & CSS** for layout and styling
+- **JavaScript** for interactivity and GitHub integration
+- **GitHub API** to fetch and display my public repositories
+- **Responsive Design** so it looks great on any screen size
+
+## View the Live Website
+
+[Visit the Live Website](https://your-username.github.io/your-repo-name/)  
+*(Replace this link with your real GitHub Pages link)*
+
+## Contact
+
+**Aleksander R. Rodriguez Kozlowski**  
+Palm Bay, Florida  
+Email: [alekrodriguezresume@gmail.com](mailto:alekrodriguezresume@gmail.com)  
+GitHub: [alekrodriguezresume](https://github.com/alekrodriguezresume)
+
+---
+
+Thank you for visiting — let’s connect!
