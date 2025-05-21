@@ -8,18 +8,16 @@ This website shows some of my GitHub projects, and it's built using HTML, CSS, a
 
 ## Highlights
 
-- Built to show my GitHub projects with live search and sorting
-- Fully responsive (works on phones, tablets, and desktops)
-- Easy to update and expand with more resume info
-- Clean design and user-friendly layout
+- Built to show my personal projects and professional accomplishments
+- Easy to update and expand with a user-friendly layout
 
 ## About Me
 
-- **Graduated:** Bachelor’s in Project Management, Arizona State University (2025)
-- **Current Role:** Management and Program Analyst Intern – USDA, PPQ Records & Info Management
-- **Focus Areas:** Program development, records management, risk analysis, and team collaboration
-- **Tools I Use:** GitHub, Power BI, SharePoint, TunerPro, Excel, Fusion 360, and more
-- **Creative Side:** I run **FTR Garage**, restoring and upgrading my 2004 Chevy Silverado HD — and sharing the journey on YouTube
+- **Graduated:** Bachelor’s of Science in Project Management, Arizona State University (2025)
+- **Current Role:** Management and Program Analyst – United Stated Department of Agriculture
+- **Focus Areas:** Program development, risk analysis, and team collaboration
+- **Tools I Use:** GitHub, Power BI, Excel, SharePoint, ArcGIS, Fusion360, TunerPro, and more
+- **Creative Side:** I run a YouTube channel where I am currently restoring a 2004 Chevy Silverado 2500HD
 
 ## Projects
 
@@ -32,17 +30,16 @@ This site is made with:
 - **HTML & CSS** for layout and styling
 - **JavaScript** for interactivity and GitHub integration
 - **GitHub API** to fetch and display my public repositories
-- **Responsive Design** so it looks great on any screen size
 
 ## View the Live Website
 
-[Visit the Live Website](https://your-username.github.io/your-repo-name/)  
-*(Replace this link with your real GitHub Pages link)*
+[Visit the Live Website](https://alekrodriguezresume.github.io/Resume/)
 
 ## Contact
 
 **Aleksander R. Rodriguez Kozlowski**  
 Palm Bay, Florida  
+LinkedIn: [Alek Rodriguez](https://linkedin.com/in/alekrodriguez)
 Email: [alekrodriguezresume@gmail.com](mailto:alekrodriguezresume@gmail.com)  
 GitHub: [alekrodriguezresume](https://github.com/alekrodriguezresume)
 
