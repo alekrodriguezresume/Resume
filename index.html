@@ -135,6 +135,57 @@
       margin-top: 1rem;
     }
 
+    /* PM Fun Facts Styles */
+    #pm-facts {
+      background-color: #f9f9f9;
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    }
+
+    #cardStack {
+      position: relative;
+      max-width: 600px;
+      margin: 2rem auto;
+      height: 130px;
+    }
+
+    .fact-card {
+      position: absolute;
+      width: 100%;
+      background: var(--link-color);
+      color: white;
+      padding: 1rem 1.5rem;
+      border-radius: 10px;
+      text-align: center;
+      font-size: 1.1rem;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+      opacity: 0;
+      transform: scale(0.95);
+      transition: all 0.4s ease;
+    }
+
+    .fact-card.active {
+      opacity: 1;
+      transform: scale(1);
+      z-index: 1;
+    }
+
+    #nextFactBtn {
+      padding: 0.6rem 1.2rem;
+      font-size: 1rem;
+      background-color: #02428b;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    #nextFactBtn:hover {
+      background-color: #0366d6;
+    }
+
     footer {
       text-align: center;
       padding: 2rem;
@@ -170,6 +221,21 @@
       </div>
       <div class="spinner" id="spinner"></div>
       <div class="repo-container" id="repos"></div>
+    </section>
+
+    <!-- Project Management Fun Facts -->
+    <section class="section" id="pm-facts">
+      <h2 style="text-align: center;">📚 Project Management Fun Facts</h2>
+      <div id="cardStack">
+        <div class="fact-card">🔍 Only 58% of organizations fully understand the value of project management.</div>
+        <div class="fact-card">🎯 Organizations using PM best practices complete 2.5x more projects successfully.</div>
+        <div class="fact-card">🛠️ Program managers align multiple projects with strategic goals.</div>
+        <div class="fact-card">🚀 Agile projects have a 64% success rate vs 49% with waterfall.</div>
+        <div class="fact-card">🧠 Soft skills like communication are the top success drivers in PM roles.</div>
+      </div>
+      <div style="text-align: center; margin-top: 1rem;">
+        <button id="nextFactBtn">Next Fun Fact</button>
+      </div>
     </section>
   </main>
 
@@ -232,7 +298,6 @@
       renderRepos(filtered);
     });
 
-    // Scroll animation
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -241,12 +306,22 @@
       });
     }, { threshold: 0.1 });
 
-    // Theme toggle
     document.getElementById("themeToggle").addEventListener("click", () => {
       document.body.toggleAttribute("data-theme");
     });
 
     fetchRepos();
+
+    // PM Fun Facts Card Stack Logic
+    const factCards = document.querySelectorAll("#cardStack .fact-card");
+    let factIndex = 0;
+    if (factCards.length > 0) factCards[0].classList.add("active");
+
+    document.getElementById("nextFactBtn").addEventListener("click", () => {
+      factCards[factIndex].classList.remove("active");
+      factIndex = (factIndex + 1) % factCards.length;
+      factCards[factIndex].classList.add("active");
+    });
   </script>
 </body>
 </html>
