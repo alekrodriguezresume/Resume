@@ -2,180 +2,74 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Aleksander R. Rodriguez Kozlowski | Resume</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      background: white;
-      color: #333;
-    }
-
-    header {
-      background-color: #02428b;
-      color: white;
-      padding: 2rem 1rem;
-      text-align: center;
-    }
-
-    header h1 {
-      margin: 0 0 0.5rem;
-    }
-
-    header p {
-      margin: 0.2rem 0;
-    }
-
-    main {
-      padding: 2rem;
-      max-width: 900px;
-      margin: auto;
-    }
-
-    .section {
-      margin-bottom: 3rem;
-    }
-
-    .search-bar {
-      text-align: center;
-      margin-bottom: 1.5rem;
-    }
-
-    .search-bar input {
-      padding: 0.6rem;
-      width: 80%;
-      max-width: 400px;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-      font-size: 1rem;
-    }
-
-    .repo-container {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1.5rem;
-      justify-content: center;
-    }
-
-    .repo-card {
-      background: white;
-      border-radius: 8px;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-      padding: 1rem;
-      width: 280px;
-      transition: transform 0.2s ease;
-    }
-
-    .repo-card:hover {
-      transform: scale(1.03);
-    }
-
-    .repo-card h3 {
-      margin-top: 0;
-    }
-
-    .repo-card a {
-      color: #0366d6;
-      text-decoration: none;
-    }
-
-    .repo-card a:hover {
-      text-decoration: underline;
-    }
-
-    footer {
-      text-align: center;
-      padding: 2rem;
-      background: #eee;
-      font-size: 0.9rem;
-    }
-
-    @media (max-width: 600px) {
-      .repo-card {
-        width: 100%;
-      }
-    }
-  </style>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Your Name – Portfolio</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <header>
-    <h1>Aleksander R. Rodriguez Kozlowski</h1>
-    <p><a href="https://linkedin.com/in/alekrodriguez" style="color: white;">My LinkedIn</p>
-    <p>Email: <a href="mailto:alekrodriguezresume@gmail.com" style="color: white;">alekrodriguezresume@gmail.com</a></p>
-    <p>Palm Bay, Florida</p>
-    <p>Analyst | Builder | Problem Solver</p>
+    <nav class="navbar">
+      <div class="logo">Your Name</div>
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a href="Aleksander Rodriguez_Resume V1.pdf" target="_blank">Resume</a></li>
+      </ul>
+      <div class="menu-toggle">&#9776;</div>
+    </nav>
   </header>
 
-  <main>
-    <section class="section">
-      <h2 style="text-align: center;">GitHub Projects</h2>
-      <div class="search-bar">
-        <input type="text" id="searchInput" placeholder="Search repositories..." aria-label="Search repositories">
+  <section id="home" class="hero">
+    <img src="images/hero-stock.jpg" alt="Professional background" class="hero-img" />
+    <div class="hero-content">
+      <h1>Hello, I'm Your Name</h1>
+      <p>A Front-End Developer passionate about crafting elegant web experiences.</p>
+      <a href="Aleksander Rodriguez_Resume V1.pdf" target="_blank" class="btn-primary">View My Resume</a>
+    </div>
+  </section>
+
+  <section id="about" class="about">
+    <div class="container">
+      <img src="images/profile.jpg" alt="Your portrait" class="profile-img" />
+      <div class="bio">
+        <h2>About Me</h2>
+        <p>I'm a developer with X years in building responsive, user-friendly websites. Skilled in HTML, CSS, JavaScript, React, and more.</p>
+        <ul>
+          <li>Experience: 5+ years in front-end web development</li>
+          <li>Skills: HTML, CSS, JS, React, Node.js, Git</li>
+          <li>Learning: TypeScript, GraphQL, Next.js</li>
+        </ul>
       </div>
-      <div class="repo-container" id="repos">
-        <p>Loading repositories...</p>
+    </div>
+  </section>
+
+  <section id="projects" class="projects">
+    <h2>Projects</h2>
+    <div class="project-grid">
+      <div class="project-card">
+        <img src="images/project1.jpg" alt="Project 1 screenshot"/>
+        <h3>Project One</h3>
+        <p>A brief description of Project One.</p>
+        <a href="https://github.com/YourUsername/project-one" target="_blank" class="btn-secondary">View Code</a>
       </div>
-    </section>
-  </main>
+    </div>
+  </section>
+
+  <section id="contact" class="contact-form">
+    <h2>Get In Touch</h2>
+    <form action="https://formspree.io/f/yourformid" method="POST">
+      <input type="text" name="name" placeholder="Your Name" required />
+      <input type="email" name="_replyto" placeholder="Your Email" required />
+      <textarea name="message" placeholder="Your Message" required></textarea>
+      <button type="submit">Send Message</button>
+    </form>
+  </section>
 
   <footer>
-    &copy; 2025 Aleksander R. Rodriguez Kozlowski. All rights reserved.
+    <p>© 2025 Your Name. Connect with me on <a href="https://github.com/YourUsername" target="_blank">GitHub</a>.</p>
   </footer>
 
-  <script>
-    const githubUsername = "alekrodriguezresume";
-    const repoContainer = document.getElementById("repos");
-    const searchInput = document.getElementById("searchInput");
-    let allRepos = [];
-
-    async function fetchRepos() {
-      try {
-        const response = await fetch(`https://api.github.com/users/${githubUsername}/repos?per_page=100`);
-        if (!response.ok) throw new Error("Failed to load GitHub data.");
-        const repos = await response.json();
-
-        allRepos = repos
-          .filter(repo => !repo.fork)
-          .sort((a, b) => b.stargazers_count - a.stargazers_count);
-
-        renderRepos(allRepos);
-      } catch (error) {
-        repoContainer.innerHTML = `<p style="color:red;">${error.message}</p>`;
-      }
-    }
-
-    function renderRepos(repos) {
-      repoContainer.innerHTML = "";
-
-      if (repos.length === 0) {
-        repoContainer.innerHTML = "<p>No matching projects found.</p>";
-        return;
-      }
-
-      repos.forEach(repo => {
-        const card = document.createElement("div");
-        card.className = "repo-card";
-        card.innerHTML = `
-          <h3><a href="${repo.html_url}" target="_blank">${repo.name}</a></h3>
-          <p>${repo.description || "No description provided."}</p>
-          <p>⭐ ${repo.stargazers_count} | 🍴 ${repo.forks_count}</p>
-        `;
-        repoContainer.appendChild(card);
-      });
-    }
-
-    searchInput.addEventListener("input", () => {
-      const query = searchInput.value.toLowerCase();
-      const filtered = allRepos.filter(repo =>
-        repo.name.toLowerCase().includes(query) ||
-        (repo.description && repo.description.toLowerCase().includes(query))
-      );
-      renderRepos(filtered);
-    });
-
-    fetchRepos();
-  </script>
+  <script src="script.js"></script>
 </body>
 </html>
