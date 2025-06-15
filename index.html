@@ -5,16 +5,32 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Aleksander R. Rodriguez Kozlowski | Resume</title>
   <style>
+    :root {
+      --bg-color: white;
+      --text-color: #333;
+      --header-bg: #02428b;
+      --link-color: #0366d6;
+    }
+
+    [data-theme="dark"] {
+      --bg-color: #121212;
+      --text-color: #ddd;
+      --header-bg: #1f1f1f;
+      --link-color: #58a6ff;
+    }
+
     body {
       font-family: Arial, sans-serif;
       margin: 0;
       padding: 0;
-      background: white;
-      color: #333;
+      background: var(--bg-color);
+      color: var(--text-color);
+      transition: background 0.3s, color 0.3s;
+      scroll-behavior: smooth;
     }
 
     header {
-      background-color: #02428b;
+      background-color: var(--header-bg);
       color: white;
       padding: 2rem 1rem;
       text-align: center;
@@ -26,6 +42,11 @@
 
     header p {
       margin: 0.2rem 0;
+    }
+
+    header a {
+      color: white;
+      text-decoration: underline;
     }
 
     main {
@@ -60,16 +81,20 @@
     }
 
     .repo-card {
-      background: white;
+      background: var(--bg-color);
       border-radius: 8px;
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
       padding: 1rem;
       width: 280px;
       transition: transform 0.2s ease;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.5s ease-out;
     }
 
-    .repo-card:hover {
-      transform: scale(1.03);
+    .repo-card.visible {
+      opacity: 1;
+      transform: none;
     }
 
     .repo-card h3 {
@@ -77,12 +102,37 @@
     }
 
     .repo-card a {
-      color: #0366d6;
+      color: var(--link-color);
       text-decoration: none;
     }
 
     .repo-card a:hover {
       text-decoration: underline;
+    }
+
+    .spinner {
+      border: 4px solid #f3f3f3;
+      border-top: 4px solid var(--header-bg);
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      animation: spin 1s linear infinite;
+      margin: 2rem auto;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    #themeToggle {
+      padding: 0.5rem 1rem;
+      font-size: 1rem;
+      background: #eee;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 1rem;
     }
 
     footer {
@@ -102,11 +152,15 @@
 <body>
   <header>
     <h1>Aleksander R. Rodriguez Kozlowski</h1>
-    <p><a href="https://linkedin.com/in/alekrodriguez" style="color: white;">My LinkedIn</p>
-    <p>Email: <a href="mailto:alekrodriguezresume@gmail.com" style="color: white;">alekrodriguezresume@gmail.com</a></p>
+    <p><a href="https://linkedin.com/in/alekrodriguez" target="_blank">My LinkedIn</a></p>
+    <p>Email: <a href="mailto:alekrodriguezresume@gmail.com">alekrodriguezresume@gmail.com</a></p>
     <p>Palm Bay, Florida</p>
     <p>Analyst | Builder | Problem Solver</p>
   </header>
+
+  <div style="text-align:center;">
+    <button id="themeToggle">Toggle Dark Mode</button>
+  </div>
 
   <main>
     <section class="section">
@@ -114,9 +168,8 @@
       <div class="search-bar">
         <input type="text" id="searchInput" placeholder="Search repositories..." aria-label="Search repositories">
       </div>
-      <div class="repo-container" id="repos">
-        <p>Loading repositories...</p>
-      </div>
+      <div class="spinner" id="spinner"></div>
+      <div class="repo-container" id="repos"></div>
     </section>
   </main>
 
@@ -128,6 +181,7 @@
     const githubUsername = "alekrodriguezresume";
     const repoContainer = document.getElementById("repos");
     const searchInput = document.getElementById("searchInput");
+    const spinner = document.getElementById("spinner");
     let allRepos = [];
 
     async function fetchRepos() {
@@ -143,6 +197,8 @@
         renderRepos(allRepos);
       } catch (error) {
         repoContainer.innerHTML = `<p style="color:red;">${error.message}</p>`;
+      } finally {
+        spinner.style.display = "none";
       }
     }
 
@@ -163,6 +219,7 @@
           <p>⭐ ${repo.stargazers_count} | 🍴 ${repo.forks_count}</p>
         `;
         repoContainer.appendChild(card);
+        observer.observe(card);
       });
     }
 
@@ -173,6 +230,20 @@
         (repo.description && repo.description.toLowerCase().includes(query))
       );
       renderRepos(filtered);
+    });
+
+    // Scroll animation
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+        }
+      });
+    }, { threshold: 0.1 });
+
+    // Theme toggle
+    document.getElementById("themeToggle").addEventListener("click", () => {
+      document.body.toggleAttribute("data-theme");
     });
 
     fetchRepos();
