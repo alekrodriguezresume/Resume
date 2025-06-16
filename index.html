@@ -25,6 +25,8 @@
     }
     section {
       margin-bottom: 3rem;
+      border-bottom: 1px solid #ccc;
+      padding-bottom: 2rem;
     }
     h2 {
       text-align: center;
@@ -36,6 +38,9 @@
       border-radius: 10px;
       box-shadow: 0 3px 10px rgba(0,0,0,0.1);
       margin-top: 1rem;
+      max-width: 500px;
+      margin-left: auto;
+      margin-right: auto;
     }
     .experience-grid {
       display: flex;
@@ -69,19 +74,27 @@
       background: #eaeaea;
       font-size: 0.9rem;
     }
+    @media (max-width: 600px) {
+      .chart-wrapper {
+        padding: 1rem;
+      }
+      .exp-card {
+        width: 100%;
+      }
+    }
   </style>
 </head>
 <body>
   <header>
-    <h1>Aleksander R. Rodriguez Kozlowski</h1>
-    <p>Resume Dashboard | Analyst · Builder · Problem Solver</p>
+    <h1>Aleksander R. Rodriguez Kozlowski | Resume Dashboard</h1>
+    <p>Analyst · Builder · Problem Solver</p>
   </header>
 
   <main>
     <section>
-      <h2>Skill Proficiency</h2>
+      <h2>Top Project Management Skills</h2>
       <div class="chart-wrapper">
-        <canvas id="skillsChart" height="300"></canvas>
+        <canvas id="skillsChart" height="250"></canvas>
       </div>
     </section>
 
@@ -90,19 +103,19 @@
       <div class="experience-grid">
         <div class="exp-card">
           <h4>Records Management System</h4>
-          <p>Developed reports tracking inventories and file plans across 250 USDA locations, improving compliance and transparency. Led collaboration with 50+ field offices and 43 State Plant Health Directors to implement federally mandated records management.</p>
+          <p>Directed a USDA-wide compliance initiative, leading the development of program analysis reports that tracked 344 inventories across 250 locations—strengthening federal records transparency and aligning with National Archives mandates.</p>
           <span class="badge">Project Mgmt</span>
           <span class="badge">Leadership</span>
         </div>
         <div class="exp-card">
           <h4>Stakeholder Dashboard</h4>
-          <p>Built live SharePoint/Power BI dashboards to track project health.</p>
+          <p>Built dynamic dashboards using SharePoint and Power BI, equipping stakeholders with real-time project visibility and enabling data-informed decisions that enhanced program oversight and accountability.</p>
           <span class="badge">Power BI</span>
           <span class="badge">Process Optimization</span>
         </div>
         <div class="exp-card">
           <h4>Compliance Initiative</h4>
-          <p>Developed tracking process for USDA records to ensure federal compliance.</p>
+          <p>Led cross-functional coordination across 50+ field offices and 43 state directors, aligning efforts to implement federally mandated file plans, while identifying 20% of records as historically significant—improving long-term information governance.</p>
           <span class="badge">Audit Ready</span>
           <span class="badge">File Plan</span>
         </div>
@@ -137,10 +150,10 @@
     new Chart(ctx, {
       type: 'radar',
       data: {
-        labels: ['Planning', 'Risk', 'Execution', 'Communication', 'Analysis', 'Visualization', 'Budget', 'KPIs'],
+        labels: ['Project Planning', 'Stakeholder Engagement', 'Risk Management', 'Strategic Communication', 'Data Analysis'],
         datasets: [{
           label: 'Skill Level (1–10)',
-          data: [9, 7, 8, 9, 8, 7, 9, 8],
+          data: [6, 6, 5, 6, 5],
           fill: true,
           backgroundColor: 'rgba(3, 102, 214, 0.2)',
           borderColor: 'rgba(3, 102, 214, 1)',
@@ -149,11 +162,24 @@
       },
       options: {
         responsive: true,
+        animation: {
+          duration: 1500,
+          easing: 'easeOutBounce'
+        },
         scales: {
           r: {
             angleLines: { display: false },
             suggestedMin: 0,
             suggestedMax: 10
+          }
+        },
+        plugins: {
+          tooltip: {
+            callbacks: {
+              label: function(context) {
+                return `${context.label}: Skill Level ${context.raw}/10`;
+              }
+            }
           }
         }
       }
