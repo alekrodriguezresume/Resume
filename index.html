@@ -2,264 +2,134 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Aleksander R. Rodriguez Kozlowski | Resume</title>
-  <meta name="description" content="Resume, project management facts, and skills of Aleksander R. Rodriguez Kozlowski." />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Aleksander R. Rodriguez Kozlowski | Dashboard</title>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <style>
-    :root {
-      --bg-color: white;
-      --text-color: #333;
-      --header-bg: #02428b;
-      --link-color: #0366d6;
-    }
-
-    [data-theme="dark"] {
-      --bg-color: #121212;
-      --text-color: #ddd;
-      --header-bg: #1f1f1f;
-      --link-color: #58a6ff;
-    }
-
     body {
-      font-family: 'Segoe UI', 'Helvetica Neue', sans-serif;
       margin: 0;
-      padding: 0;
-      background: var(--bg-color);
-      color: var(--text-color);
-      transition: background 0.3s, color 0.3s;
-      scroll-behavior: smooth;
-      line-height: 1.6;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f4f6f8;
+      color: #333;
     }
-
     header {
-      background-color: var(--header-bg);
-      color: white;
-      padding: 2rem 1rem;
-      text-align: center;
-      position: relative;
-    }
-
-    header a {
-      color: white;
-      text-decoration: underline;
-    }
-
-    #themeToggleBtn {
-      position: absolute;
-      top: 1rem;
-      right: 1rem;
-      background: none;
-      border: 2px solid white;
-      border-radius: 4px;
-      color: white;
-      padding: 0.4rem;
-      cursor: pointer;
-      font-size: 1rem;
-    }
-
-    main {
-      padding: 2rem;
-      max-width: 900px;
-      margin: auto;
-    }
-
-    h2 {
-      text-align: center;
-      margin-bottom: 1rem;
-      font-size: 2rem;
-    }
-
-    .section {
-      margin-bottom: 4rem;
-    }
-
-    .skills-grid {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 1rem;
-      margin-top: 1.5rem;
-    }
-
-    .skill-card {
-      background: var(--link-color);
-      color: white;
-      padding: 1rem 1.5rem;
-      border-radius: 10px;
-      font-weight: bold;
-      text-align: center;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-      min-width: 140px;
-      transition: transform 0.3s ease, background 0.3s ease;
-    }
-
-    .skill-card:hover {
-      transform: scale(1.05);
-      background: #02428b;
-    }
-
-    #cardStack {
-      position: relative;
-      max-width: 600px;
-      margin: 2rem auto;
-      height: 200px;
-      overflow: hidden;
-    }
-
-    .fact-card {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      background: var(--link-color);
-      color: white;
-      padding: 1rem 1.5rem;
-      border-radius: 10px;
-      text-align: center;
-      font-size: 1.1rem;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.15);
-      opacity: 0;
-      transform: translateX(100%);
-      transition: transform 0.5s ease, opacity 0.4s ease;
-      z-index: 0;
-      box-sizing: border-box;
-    }
-
-    .fact-card.active {
-      opacity: 1;
-      transform: translateX(0);
-      z-index: 1;
-    }
-
-    .controls {
-      text-align: center;
-      margin-top: 2rem;
-    }
-
-    .controls button {
-      padding: 0.6rem 1.2rem;
-      font-size: 1rem;
       background-color: #02428b;
       color: white;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-      margin: 0 0.5rem;
-    }
-
-    .controls button:hover {
-      background-color: #0366d6;
-    }
-
-    .contact {
+      padding: 2rem;
       text-align: center;
     }
-
+    main {
+      max-width: 1100px;
+      margin: auto;
+      padding: 2rem;
+    }
+    section {
+      margin-bottom: 3rem;
+    }
+    h2 {
+      text-align: center;
+      color: #02428b;
+    }
+    .chart-wrapper {
+      background: white;
+      padding: 1.5rem;
+      border-radius: 10px;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+      margin-top: 1rem;
+    }
+    .experience-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      justify-content: center;
+    }
+    .exp-card {
+      background: white;
+      padding: 1.5rem;
+      border-radius: 8px;
+      width: 300px;
+      box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+    }
+    .exp-card h4 {
+      margin: 0 0 0.5rem;
+      color: #02428b;
+    }
+    .badge {
+      display: inline-block;
+      background: #0366d6;
+      color: white;
+      padding: 0.3rem 0.7rem;
+      border-radius: 4px;
+      font-size: 0.85rem;
+      margin: 0.2rem;
+    }
     footer {
       text-align: center;
-      padding: 2rem;
-      background: #eee;
+      padding: 1rem;
+      background: #eaeaea;
       font-size: 0.9rem;
-    }
-
-    #chart-container {
-      width: 100%;
-      max-width: 600px;
-      margin: 2rem auto;
-    }
-
-    @media (max-width: 600px) {
-      .fact-card {
-        font-size: 1rem;
-        padding: 1rem;
-      }
-
-      .skills-grid {
-        gap: 0.5rem;
-        padding: 0 1rem;
-      }
-
-      .skill-card {
-        font-size: 0.9rem;
-        padding: 0.8rem;
-      }
     }
   </style>
 </head>
 <body>
   <header>
     <h1>Aleksander R. Rodriguez Kozlowski</h1>
-    <button id="themeToggleBtn" aria-label="Toggle theme">🌙</button>
-    <p><a href="https://linkedin.com/in/alekrodriguez" target="_blank">My LinkedIn</a></p>
-    <p>Email: <a href="mailto:alekrodriguezresume@gmail.com">alekrodriguezresume@gmail.com</a></p>
-    <p>Palm Bay, Florida</p>
-    <p>Analyst | Builder | Problem Solver</p>
+    <p>Resume Dashboard | Analyst · Builder · Problem Solver</p>
   </header>
 
   <main>
-    <section class="section" id="skills">
-      <h2>Skills</h2>
-      <div class="skills-grid">
-        <div class="skill-card">Project Planning</div>
-        <div class="skill-card">Risk Management</div>
-        <div class="skill-card">Agile & Scrum</div>
-        <div class="skill-card">Stakeholder Communication</div>
-        <div class="skill-card">Business Analysis</div>
-        <div class="skill-card">Data Visualization</div>
-        <div class="skill-card">Root Cause Analysis</div>
-        <div class="skill-card">Budget Tracking</div>
-        <div class="skill-card">Workflow Optimization</div>
-        <div class="skill-card">Performance Metrics</div>
+    <section>
+      <h2>Skill Proficiency</h2>
+      <div class="chart-wrapper">
+        <canvas id="skillsChart" height="300"></canvas>
       </div>
     </section>
 
-    <section class="section" id="chart-section">
-      <h2>Skills Overview</h2>
-      <div id="chart-container">
-        <canvas id="skillsChart"></canvas>
+    <section>
+      <h2>Project Experience</h2>
+      <div class="experience-grid">
+        <div class="exp-card">
+          <h4>Records Management System</h4>
+          <p>Tracked inventory and digitized paper records across 6 offices.</p>
+          <span class="badge">Risk Mgmt</span>
+          <span class="badge">Leadership</span>
+        </div>
+        <div class="exp-card">
+          <h4>Stakeholder Dashboard</h4>
+          <p>Built live SharePoint/Power BI dashboards to track project health.</p>
+          <span class="badge">Power BI</span>
+          <span class="badge">Process Optimization</span>
+        </div>
+        <div class="exp-card">
+          <h4>Compliance Initiative</h4>
+          <p>Developed tracking process for USDA records to ensure federal compliance.</p>
+          <span class="badge">Audit Ready</span>
+          <span class="badge">File Plan</span>
+        </div>
       </div>
     </section>
 
-    <section class="section contact" id="contact">
-      <h2>Contact</h2>
-      <p>📧 <a href="mailto:alekrodriguezresume@gmail.com">alekrodriguezresume@gmail.com</a></p>
-      <p>🌐 <a href="https://linkedin.com/in/alekrodriguez" target="_blank">linkedin.com/in/alekrodriguez</a></p>
-      <p>📍 Palm Bay, Florida</p>
+    <section>
+      <h2>Certifications & Education</h2>
+      <div class="chart-wrapper">
+        <p class="badge">PMP (in progress)</p>
+        <p class="badge">B.S. Project Management (May 2025)</p>
+        <p class="badge">Agile Fundamentals</p>
+      </div>
+    </section>
+
+    <section>
+      <h2>Contact & Links</h2>
+      <div class="chart-wrapper" style="text-align: center;">
+        <p><a href="mailto:alekrodriguezresume@gmail.com">alekrodriguezresume@gmail.com</a></p>
+        <p><a href="https://linkedin.com/in/alekrodriguez" target="_blank">LinkedIn Profile</a></p>
+        <p>Palm Bay, FL</p>
+      </div>
     </section>
   </main>
 
   <footer>
-    &copy; 2025 Aleksander R. Rodriguez Kozlowski. All rights reserved.
+    &copy; 2025 Aleksander R. Rodriguez Kozlowski
   </footer>
 
-  <script>
-    const ctx = document.getElementById('skillsChart').getContext('2d');
-    new Chart(ctx, {
-      type: 'radar',
-      data: {
-        labels: ['Planning', 'Risk', 'Agile', 'Communication', 'Analysis', 'Visualization', 'Root Cause', 'Budget', 'Workflow', 'Metrics'],
-        datasets: [{
-          label: 'Skill Proficiency (1–10)',
-          data: [9, 8, 7, 9, 8, 8, 8, 7, 9, 8],
-          fill: true,
-          backgroundColor: 'rgba(3, 102, 214, 0.2)',
-          borderColor: 'rgba(3, 102, 214, 1)',
-          pointBackgroundColor: 'rgba(3, 102, 214, 1)'
-        }]
-      },
-      options: {
-        responsive: true,
-        scales: {
-          r: {
-            angleLines: { display: false },
-            suggestedMin: 0,
-            suggestedMax: 10
-          }
-        }
-      }
-    });
-  </script>
-</body>
-</html>
+  <scr
