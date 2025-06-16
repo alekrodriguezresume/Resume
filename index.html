@@ -2,8 +2,9 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Aleksander R. Rodriguez Kozlowski | Resume</title>
+  <meta name="description" content="Resume + PM fun facts by Aleksander R. Rodriguez Kozlowski." />
   <style>
     :root {
       --bg-color: white;
@@ -20,13 +21,14 @@
     }
 
     body {
-      font-family: Arial, sans-serif;
+      font-family: 'Segoe UI', 'Helvetica Neue', sans-serif;
       margin: 0;
       padding: 0;
       background: var(--bg-color);
       color: var(--text-color);
       transition: background 0.3s, color 0.3s;
       scroll-behavior: smooth;
+      line-height: 1.6;
     }
 
     header {
@@ -34,19 +36,26 @@
       color: white;
       padding: 2rem 1rem;
       text-align: center;
-    }
-
-    header h1 {
-      margin: 0 0 0.5rem;
-    }
-
-    header p {
-      margin: 0.2rem 0;
+      position: relative;
     }
 
     header a {
       color: white;
       text-decoration: underline;
+    }
+
+    #themeToggleBtn {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      background: none;
+      border: 2px solid white;
+      border-radius: 4px;
+      color: white;
+      padding: 0.4rem;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: background 0.3s ease;
     }
 
     main {
@@ -59,99 +68,17 @@
       margin-bottom: 3rem;
     }
 
-    .search-bar {
-      text-align: center;
-      margin-bottom: 1.5rem;
-    }
-
-    .search-bar input {
-      padding: 0.6rem;
-      width: 80%;
-      max-width: 400px;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-      font-size: 1rem;
-    }
-
-    .repo-container {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1.5rem;
-      justify-content: center;
-    }
-
-    .repo-card {
-      background: var(--bg-color);
-      border-radius: 8px;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-      padding: 1rem;
-      width: 280px;
-      transition: transform 0.2s ease;
-      opacity: 0;
-      transform: translateY(20px);
-      transition: all 0.5s ease-out;
-    }
-
-    .repo-card.visible {
-      opacity: 1;
-      transform: none;
-    }
-
-    .repo-card h3 {
-      margin-top: 0;
-    }
-
-    .repo-card a {
-      color: var(--link-color);
-      text-decoration: none;
-    }
-
-    .repo-card a:hover {
-      text-decoration: underline;
-    }
-
-    .spinner {
-      border: 4px solid #f3f3f3;
-      border-top: 4px solid var(--header-bg);
-      border-radius: 50%;
-      width: 40px;
-      height: 40px;
-      animation: spin 1s linear infinite;
-      margin: 2rem auto;
-    }
-
-    @keyframes spin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-    }
-
-    #themeToggle {
-      padding: 0.5rem 1rem;
-      font-size: 1rem;
-      background: #eee;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-      cursor: pointer;
-      margin-top: 1rem;
-    }
-
-    /* PM Fun Facts Styles */
-    #pm-facts {
-      background-color: #f9f9f9;
-      padding: 2rem;
-      border-radius: 10px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-    }
-
     #cardStack {
       position: relative;
       max-width: 600px;
       margin: 2rem auto;
-      height: 130px;
+      height: 200px;
     }
 
     .fact-card {
       position: absolute;
+      top: 0;
+      left: 0;
       width: 100%;
       background: var(--link-color);
       color: white;
@@ -162,7 +89,9 @@
       box-shadow: 0 4px 8px rgba(0,0,0,0.15);
       opacity: 0;
       transform: scale(0.95);
-      transition: all 0.4s ease;
+      transition: opacity 0.5s ease, transform 0.4s ease;
+      z-index: 0;
+      box-sizing: border-box;
     }
 
     .fact-card.active {
@@ -171,7 +100,12 @@
       z-index: 1;
     }
 
-    #nextFactBtn {
+    .controls {
+      text-align: center;
+      margin-top: 2rem;
+    }
+
+    .controls button {
       padding: 0.6rem 1.2rem;
       font-size: 1rem;
       background-color: #02428b;
@@ -179,11 +113,16 @@
       border: none;
       border-radius: 6px;
       cursor: pointer;
-      transition: background-color 0.3s ease;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+      margin: 0 0.5rem;
     }
 
-    #nextFactBtn:hover {
+    .controls button:hover {
       background-color: #0366d6;
+    }
+
+    .controls button:active {
+      transform: scale(0.97);
     }
 
     footer {
@@ -194,8 +133,9 @@
     }
 
     @media (max-width: 600px) {
-      .repo-card {
-        width: 100%;
+      .fact-card {
+        font-size: 1rem;
+        padding: 1rem;
       }
     }
   </style>
@@ -203,84 +143,24 @@
 <body>
   <header>
     <h1>Aleksander R. Rodriguez Kozlowski</h1>
+    <button id="themeToggleBtn" aria-label="Toggle theme">🌙</button>
     <p><a href="https://linkedin.com/in/alekrodriguez" target="_blank">My LinkedIn</a></p>
     <p>Email: <a href="mailto:alekrodriguezresume@gmail.com">alekrodriguezresume@gmail.com</a></p>
     <p>Palm Bay, Florida</p>
     <p>Analyst | Builder | Problem Solver</p>
   </header>
 
-  <div style="text-align:center;">
-    <button id="themeToggle">Toggle Dark Mode</button>
-  </div>
-
   <main>
-    <section class="section">
-      <h2 style="text-align: center;">GitHub Projects</h2>
-      <div class="search-bar">
-        <input type="text" id="searchInput" placeholder="Search repositories..." aria-label="Search repositories">
+    <section class="section" id="pm-facts">
+      <h2 style="text-align: center;">Project Management Fun Facts</h2>
+      <div id="cardStack">
+        <!-- (Copy & paste all your .fact-card divs here) -->
       </div>
-      <div class="spinner" id="spinner"></div>
-      <div class="repo-container" id="repos"></div>
+      <div class="controls">
+        <button id="prevFactBtn" aria-label="Previous fact">Previous</button>
+        <button id="nextFactBtn" aria-label="Next fact">Next</button>
+      </div>
     </section>
-
-    <!-- Project Management Fun Facts -->
-  <!-- Add this inside your <main> element where the Fun Facts section is -->
-<section class="section" id="pm-facts">
-  <h2 style="text-align: center;">Project Management Fun Facts</h2>
-  <div id="cardStack">
-    <div class="fact-card active">
-      The Great Pyramids were one of the earliest large-scale project management efforts—without software or email!
-      <br><small>Source: <a href="https://www.pmi.org/learning/library/history-project-management-8024" target="_blank">PMI.org</a></small>
-    </div>
-    <div class="fact-card">
-      Gantt charts are over 100 years old, introduced by Henry Gantt in the 1910s.
-      <br><small>Source: <a href="https://www.gantt.com" target="_blank">Gantt.com</a></small>
-    </div>
-    <div class="fact-card">
-      Only around 35% of projects are considered truly successful in meeting all goals.
-      <br><small>Source: <a href="https://www.pmi.org/learning/library/pulse-of-the-profession-2020-12036" target="_blank">PMI Pulse of the Profession</a></small>
-    </div>
-    <div class="fact-card">
-      Scope creep is a leading cause of project failure—it sneaks up when goals keep changing.
-      <br><small>Source: <a href="https://www.pmi.org/learning/library/scope-creep-project-failure-11054" target="_blank">PMI.org</a></small>
-    </div>
-    <div class="fact-card">
-      The word “project” comes from the Latin “projectum,” meaning to throw forth.
-      <br><small>Source: <a href="https://www.etymonline.com/word/project" target="_blank">Etymology Dictionary</a></small>
-    </div>
-    <div class="fact-card">
-      The Agile Manifesto was created at a ski resort in Utah in 2001.
-      <br><small>Source: <a href="https://agilemanifesto.org" target="_blank">AgileManifesto.org</a></small>
-    </div>
-    <div class="fact-card">
-      The PMP® certification is considered the gold standard for project managers worldwide.
-      <br><small>Source: <a href="https://www.pmi.org/certifications/project-management-pmp" target="_blank">PMI.org</a></small>
-    </div>
-    <div class="fact-card">
-      PERT charts were first developed by the U.S. Navy in the 1950s to manage missile projects.
-      <br><small>Source: <a href="https://www.dau.edu/library/defense-atl/blog/PERT-and-the-Polaris-Program" target="_blank">Defense Acquisition University</a></small>
-    </div>
-    <div class="fact-card">
-      “Death march projects” describe doomed efforts with unrealistic goals but no way out.
-      <br><small>Source: <a href="https://www.goodreads.com/book/show/67842.Death_March" target="_blank">Edward Yourdon – *Death March*</a></small>
-    </div>
-    <div class="fact-card">
-      Project managers spend up to 90% of their time communicating, not planning.
-      <br><small>Source: <a href="https://www.pmi.org/learning/library/communication-skills-project-success-8334" target="_blank">PMBOK & PMI.org</a></small>
-    </div>
-    <div class="fact-card">
-      Project management is used across every industry—from tech to tacos.
-      <br><small>Source: <a href="https://www.pmi.org/learning/library/industry-perspectives-project-management-12028" target="_blank">PMI Industry Insights</a></small>
-    </div>
-    <div class="fact-card">
-      The World Bank called project management a core global workforce skill.
-      <br><small>Source: <a href="https://blogs.worldbank.org/education/skills-global-workforce" target="_blank">World Bank Blogs</a></small>
-    </div>
-  </div>
-  <div style="text-align: center; margin-top: 2rem;">
-    <button id="nextFactBtn">Next Fact</button>
-  </div>
-</section>
   </main>
 
   <footer>
@@ -288,94 +168,66 @@
   </footer>
 
   <script>
-  // PM Fun Facts Card Stack Logic
-  const factCards = document.querySelectorAll("#cardStack .fact-card");
-  let factIndex = 0;
-  if (factCards.length > 0) factCards[0].classList.add("active");
+    const nextBtn = document.getElementById("nextFactBtn");
+    const prevBtn = document.getElementById("prevFactBtn");
+    const toggleBtn = document.getElementById("themeToggleBtn");
+    const cardContainer = document.getElementById("cardStack");
+    const factCards = cardContainer ? cardContainer.querySelectorAll(".fact-card") : [];
 
-  document.getElementById("nextFactBtn").addEventListener("click", () => {
-    factCards[factIndex].classList.remove("active");
-    factIndex = (factIndex + 1) % factCards.length;
-    factCards[factIndex].classList.add("active");
-  });
-    const githubUsername = "alekrodriguezresume";
-    const repoContainer = document.getElementById("repos");
-    const searchInput = document.getElementById("searchInput");
-    const spinner = document.getElementById("spinner");
-    let allRepos = [];
-
-    async function fetchRepos() {
-      try {
-        const response = await fetch(`https://api.github.com/users/${githubUsername}/repos?per_page=100`);
-        if (!response.ok) throw new Error("Failed to load GitHub data.");
-        const repos = await response.json();
-
-        allRepos = repos
-          .filter(repo => !repo.fork)
-          .sort((a, b) => b.stargazers_count - a.stargazers_count);
-
-        renderRepos(allRepos);
-      } catch (error) {
-        repoContainer.innerHTML = `<p style="color:red;">${error.message}</p>`;
-      } finally {
-        spinner.style.display = "none";
-      }
+    function initTheme() {
+      const saved = localStorage.getItem('theme') || 'light';
+      document.documentElement.setAttribute('data-theme', saved);
+      toggleBtn.textContent = saved === 'dark' ? '☀️' : '🌙';
     }
 
-    function renderRepos(repos) {
-      repoContainer.innerHTML = "";
+    function toggleTheme() {
+      const current = document.documentElement.getAttribute('data-theme');
+      const next = current === 'dark' ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', next);
+      localStorage.setItem('theme', next);
+      toggleBtn.textContent = next === 'dark' ? '☀️' : '🌙';
+    }
 
-      if (repos.length === 0) {
-        repoContainer.innerHTML = "<p>No matching projects found.</p>";
-        return;
-      }
+    toggleBtn.addEventListener('click', toggleTheme);
+    initTheme();
 
-      repos.forEach(repo => {
-        const card = document.createElement("div");
-        card.className = "repo-card";
-        card.innerHTML = `
-          <h3><a href="${repo.html_url}" target="_blank">${repo.name}</a></h3>
-          <p>${repo.description || "No description provided."}</p>
-          <p>⭐ ${repo.stargazers_count} | 🍴 ${repo.forks_count}</p>
-        `;
-        repoContainer.appendChild(card);
-        observer.observe(card);
+    let factIndex = parseInt(localStorage.getItem("factIndex")) || 0;
+
+    function showFact(index) {
+      if (factCards.length === 0) return;
+      factCards.forEach(card => card.classList.remove("active"));
+      if (factCards[index]) factCards[index].classList.add("active");
+      localStorage.setItem("factIndex", index);
+    }
+
+    function resetAutoAdvance() {
+      clearInterval(autoAdvance);
+      autoAdvance = setInterval(() => {
+        factIndex = (factIndex + 1) % factCards.length;
+        showFact(factIndex);
+      }, 10000);
+    }
+
+    if (nextBtn && prevBtn && factCards.length) {
+      nextBtn.addEventListener("click", () => {
+        factIndex = (factIndex + 1) % factCards.length;
+        showFact(factIndex);
+        resetAutoAdvance();
+      });
+
+      prevBtn.addEventListener("click", () => {
+        factIndex = (factIndex - 1 + factCards.length) % factCards.length;
+        showFact(factIndex);
+        resetAutoAdvance();
       });
     }
 
-    searchInput.addEventListener("input", () => {
-      const query = searchInput.value.toLowerCase();
-      const filtered = allRepos.filter(repo =>
-        repo.name.toLowerCase().includes(query) ||
-        (repo.description && repo.description.toLowerCase().includes(query))
-      );
-      renderRepos(filtered);
-    });
+    showFact(factIndex);
 
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("visible");
-        }
-      });
-    }, { threshold: 0.1 });
-
-    document.getElementById("themeToggle").addEventListener("click", () => {
-      document.body.toggleAttribute("data-theme");
-    });
-
-    fetchRepos();
-
-    // PM Fun Facts Card Stack Logic
-    const factCards = document.querySelectorAll("#cardStack .fact-card");
-    let factIndex = 0;
-    if (factCards.length > 0) factCards[0].classList.add("active");
-
-    document.getElementById("nextFactBtn").addEventListener("click", () => {
-      factCards[factIndex].classList.remove("active");
+    let autoAdvance = setInterval(() => {
       factIndex = (factIndex + 1) % factCards.length;
-      factCards[factIndex].classList.add("active");
-    });
+      showFact(factIndex);
+    }, 10000);
   </script>
 </body>
 </html>
