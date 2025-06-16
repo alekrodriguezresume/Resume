@@ -224,60 +224,63 @@
     </section>
 
     <!-- Project Management Fun Facts -->
-   <section class="section" id="pm-facts">
+  <!-- Add this inside your <main> element where the Fun Facts section is -->
+<section class="section" id="pm-facts">
   <h2 style="text-align: center;">Project Management Fun Facts</h2>
   <div id="cardStack">
-    <div class="fact-card">
+    <div class="fact-card active">
       The Great Pyramids were one of the earliest large-scale project management efforts—without software or email!
-      <br><small>Source: PMI.org (Historical Perspective)</small>
+      <br><small>Source: <a href="https://www.pmi.org/learning/library/history-project-management-8024" target="_blank">PMI.org</a></small>
     </div>
     <div class="fact-card">
       Gantt charts are over 100 years old, introduced by Henry Gantt in the 1910s.
-      <br><small>Source: Gantt.com</small>
+      <br><small>Source: <a href="https://www.gantt.com" target="_blank">Gantt.com</a></small>
     </div>
     <div class="fact-card">
       Only around 35% of projects are considered truly successful in meeting all goals.
-      <br><small>Source: PMI Pulse of the Profession 2020</small>
+      <br><small>Source: <a href="https://www.pmi.org/learning/library/pulse-of-the-profession-2020-12036" target="_blank">PMI Pulse of the Profession</a></small>
     </div>
     <div class="fact-card">
       Scope creep is a leading cause of project failure—it sneaks up when goals keep changing.
-      <br><small>Source: PMI.org - Project Scope Management</small>
+      <br><small>Source: <a href="https://www.pmi.org/learning/library/scope-creep-project-failure-11054" target="_blank">PMI.org</a></small>
     </div>
     <div class="fact-card">
       The word “project” comes from the Latin “projectum,” meaning to throw forth.
-      <br><small>Source: Online Etymology Dictionary</small>
+      <br><small>Source: <a href="https://www.etymonline.com/word/project" target="_blank">Etymology Dictionary</a></small>
     </div>
     <div class="fact-card">
       The Agile Manifesto was created at a ski resort in Utah in 2001.
-      <br><small>Source: AgileManifesto.org</small>
+      <br><small>Source: <a href="https://agilemanifesto.org" target="_blank">AgileManifesto.org</a></small>
     </div>
     <div class="fact-card">
       The PMP® certification is considered the gold standard for project managers worldwide.
-      <br><small>Source: PMI.org - Certification Overview</small>
+      <br><small>Source: <a href="https://www.pmi.org/certifications/project-management-pmp" target="_blank">PMI.org</a></small>
     </div>
     <div class="fact-card">
       PERT charts were first developed by the U.S. Navy in the 1950s to manage missile projects.
-      <br><small>Source: Defense Acquisition University</small>
+      <br><small>Source: <a href="https://www.dau.edu/library/defense-atl/blog/PERT-and-the-Polaris-Program" target="_blank">Defense Acquisition University</a></small>
     </div>
     <div class="fact-card">
       “Death march projects” describe doomed efforts with unrealistic goals but no way out.
-      <br><small>Source: Edward Yourdon’s book *Death March*</small>
+      <br><small>Source: <a href="https://www.goodreads.com/book/show/67842.Death_March" target="_blank">Edward Yourdon – *Death March*</a></small>
     </div>
     <div class="fact-card">
       Project managers spend up to 90% of their time communicating, not planning.
-      <br><small>Source: PMI Talent Triangle & PMBOK® Guide</small>
+      <br><small>Source: <a href="https://www.pmi.org/learning/library/communication-skills-project-success-8334" target="_blank">PMBOK & PMI.org</a></small>
     </div>
     <div class="fact-card">
       Project management is used across every industry—from tech to tacos.
-      <br><small>Source: PMI.org – Industry Use Cases</small>
+      <br><small>Source: <a href="https://www.pmi.org/learning/library/industry-perspectives-project-management-12028" target="_blank">PMI Industry Insights</a></small>
     </div>
     <div class="fact-card">
       The World Bank called project management a core global workforce skill.
-      <br><small>Source: World Bank Blogs – Skills for the Future</small>
+      <br><small>Source: <a href="https://blogs.worldbank.org/education/skills-global-workforce" target="_blank">World Bank Blogs</a></small>
     </div>
   </div>
+  <div style="text-align: center; margin-top: 2rem;">
+    <button id="nextFactBtn">Next Fact</button>
+  </div>
 </section>
-  
   </main>
 
   <footer>
@@ -285,6 +288,16 @@
   </footer>
 
   <script>
+  // PM Fun Facts Card Stack Logic
+  const factCards = document.querySelectorAll("#cardStack .fact-card");
+  let factIndex = 0;
+  if (factCards.length > 0) factCards[0].classList.add("active");
+
+  document.getElementById("nextFactBtn").addEventListener("click", () => {
+    factCards[factIndex].classList.remove("active");
+    factIndex = (factIndex + 1) % factCards.length;
+    factCards[factIndex].classList.add("active");
+  });
     const githubUsername = "alekrodriguezresume";
     const repoContainer = document.getElementById("repos");
     const searchInput = document.getElementById("searchInput");
