@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Aleksander R. Rodriguez Kozlowski | Resume</title>
-  <meta name="description" content="Resume + PM fun facts by Aleksander R. Rodriguez Kozlowski." />
+  <meta name="description" content="Resume, project management facts, and skills of Aleksander R. Rodriguez Kozlowski." />
   <style>
     :root {
       --bg-color: white;
@@ -55,7 +55,6 @@
       padding: 0.4rem;
       cursor: pointer;
       font-size: 1rem;
-      transition: background 0.3s ease;
     }
 
     main {
@@ -64,8 +63,30 @@
       margin: auto;
     }
 
+    h2 {
+      text-align: center;
+      margin-bottom: 1rem;
+      font-size: 2rem;
+    }
+
     .section {
-      margin-bottom: 3rem;
+      margin-bottom: 4rem;
+    }
+
+    .skills-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 0.5rem;
+      list-style: none;
+      padding: 0;
+    }
+
+    .skills-list li {
+      background: var(--link-color);
+      color: white;
+      padding: 0.6rem 1rem;
+      border-radius: 6px;
+      text-align: center;
     }
 
     #cardStack {
@@ -73,6 +94,7 @@
       max-width: 600px;
       margin: 2rem auto;
       height: 200px;
+      overflow: hidden;
     }
 
     .fact-card {
@@ -88,16 +110,24 @@
       font-size: 1.1rem;
       box-shadow: 0 4px 8px rgba(0,0,0,0.15);
       opacity: 0;
-      transform: scale(0.95);
-      transition: opacity 0.5s ease, transform 0.4s ease;
+      transform: translateX(100%);
+      transition: transform 0.5s ease, opacity 0.4s ease;
       z-index: 0;
       box-sizing: border-box;
     }
 
     .fact-card.active {
       opacity: 1;
-      transform: scale(1);
+      transform: translateX(0);
       z-index: 1;
+    }
+
+    .fact-card.exit-left {
+      transform: translateX(-100%);
+    }
+
+    .fact-card.exit-right {
+      transform: translateX(100%);
     }
 
     .controls {
@@ -113,7 +143,7 @@
       border: none;
       border-radius: 6px;
       cursor: pointer;
-      transition: background-color 0.3s ease, transform 0.2s ease;
+      transition: background-color 0.3s ease;
       margin: 0 0.5rem;
     }
 
@@ -121,8 +151,8 @@
       background-color: #0366d6;
     }
 
-    .controls button:active {
-      transform: scale(0.97);
+    .contact {
+      text-align: center;
     }
 
     footer {
@@ -151,15 +181,49 @@
   </header>
 
   <main>
+    <section class="section" id="skills">
+      <h2>Skills</h2>
+      <ul class="skills-list">
+        <li>Project Planning</li>
+        <li>Risk Management</li>
+        <li>Agile & Scrum</li>
+        <li>Stakeholder Communication</li>
+        <li>Business Analysis</li>
+        <li>Data Visualization</li>
+        <li>Root Cause Analysis</li>
+        <li>Budget Tracking</li>
+        <li>Workflow Optimization</li>
+        <li>Performance Metrics</li>
+      </ul>
+    </section>
+
     <section class="section" id="pm-facts">
-      <h2 style="text-align: center;">Project Management Fun Facts</h2>
+      <h2>Project Management Fun Facts</h2>
       <div id="cardStack">
-        <!-- (Copy & paste all your .fact-card divs here) -->
+        <div class="fact-card active">The Great Pyramids were one of the earliest project management feats!<br><small><a href="https://www.pmi.org/learning/library/history-project-management-8024" target="_blank">PMI.org</a></small></div>
+        <div class="fact-card">Gantt charts date back over 100 years to the 1910s.<br><small><a href="https://www.gantt.com" target="_blank">Gantt.com</a></small></div>
+        <div class="fact-card">Only 35% of projects fully meet their goals.<br><small><a href="https://www.pmi.org/learning/library/pulse-of-the-profession-2020-12036" target="_blank">PMI Pulse 2020</a></small></div>
+        <div class="fact-card">Scope creep is a leading cause of project failure—it sneaks up when goals keep changing.<br><small><a href="https://www.pmi.org/learning/library/scope-creep-project-failure-11054" target="_blank">PMI.org</a></small></div>
+        <div class="fact-card">The word “project” comes from the Latin “projectum,” meaning to throw forth.<br><small><a href="https://www.etymonline.com/word/project" target="_blank">Etymology Dictionary</a></small></div>
+        <div class="fact-card">The Agile Manifesto was created at a ski resort in Utah in 2001.<br><small><a href="https://agilemanifesto.org" target="_blank">AgileManifesto.org</a></small></div>
+        <div class="fact-card">The PMP® certification is considered the gold standard for project managers worldwide.<br><small><a href="https://www.pmi.org/certifications/project-management-pmp" target="_blank">PMI.org</a></small></div>
+        <div class="fact-card">PERT charts were first developed by the U.S. Navy in the 1950s to manage missile projects.<br><small><a href="https://www.dau.edu/library/defense-atl/blog/PERT-and-the-Polaris-Program" target="_blank">Defense Acquisition University</a></small></div>
+        <div class="fact-card">“Death march projects” describe doomed efforts with unrealistic goals but no way out.<br><small><a href="https://www.goodreads.com/book/show/67842.Death_March" target="_blank">Edward Yourdon – *Death March*</a></small></div>
+        <div class="fact-card">Project managers spend up to 90% of their time communicating, not planning.<br><small><a href="https://www.pmi.org/learning/library/communication-skills-project-success-8334" target="_blank">PMI.org</a></small></div>
+        <div class="fact-card">Project management is used across every industry—from tech to tacos.<br><small><a href="https://www.pmi.org/learning/library/industry-perspectives-project-management-12028" target="_blank">PMI Industry Insights</a></small></div>
+        <div class="fact-card">The World Bank called project management a core global workforce skill.<br><small><a href="https://blogs.worldbank.org/education/skills-global-workforce" target="_blank">World Bank Blogs</a></small></div>
       </div>
       <div class="controls">
         <button id="prevFactBtn" aria-label="Previous fact">Previous</button>
         <button id="nextFactBtn" aria-label="Next fact">Next</button>
       </div>
+    </section>
+
+    <section class="section contact" id="contact">
+      <h2>Contact</h2>
+      <p>📧 <a href="mailto:alekrodriguezresume@gmail.com">alekrodriguezresume@gmail.com</a></p>
+      <p>🌐 <a href="https://linkedin.com/in/alekrodriguez" target="_blank">linkedin.com/in/alekrodriguez</a></p>
+      <p>📍 Palm Bay, Florida</p>
     </section>
   </main>
 
@@ -168,11 +232,13 @@
   </footer>
 
   <script>
+    const toggleBtn = document.getElementById("themeToggleBtn");
     const nextBtn = document.getElementById("nextFactBtn");
     const prevBtn = document.getElementById("prevFactBtn");
-    const toggleBtn = document.getElementById("themeToggleBtn");
     const cardContainer = document.getElementById("cardStack");
-    const factCards = cardContainer ? cardContainer.querySelectorAll(".fact-card") : [];
+    const factCards = cardContainer.querySelectorAll(".fact-card");
+    let factIndex = parseInt(localStorage.getItem("factIndex")) || 0;
+    let autoAdvance;
 
     function initTheme() {
       const saved = localStorage.getItem('theme') || 'light';
@@ -188,46 +254,33 @@
       toggleBtn.textContent = next === 'dark' ? '☀️' : '🌙';
     }
 
-    toggleBtn.addEventListener('click', toggleTheme);
-    initTheme();
-
-    let factIndex = parseInt(localStorage.getItem("factIndex")) || 0;
-
-    function showFact(index) {
-      if (factCards.length === 0) return;
-      factCards.forEach(card => card.classList.remove("active"));
-      if (factCards[index]) factCards[index].classList.add("active");
-      localStorage.setItem("factIndex", index);
+    function showFact(index, direction = "right") {
+      factCards.forEach(card => card.classList.remove("active", "exit-left", "exit-right"));
+      factIndex = index;
+      const card = factCards[factIndex];
+      card.classList.add("active");
+      localStorage.setItem("factIndex", factIndex);
     }
 
     function resetAutoAdvance() {
       clearInterval(autoAdvance);
       autoAdvance = setInterval(() => {
-        factIndex = (factIndex + 1) % factCards.length;
-        showFact(factIndex);
+        showFact((factIndex + 1) % factCards.length, "right");
       }, 10000);
     }
 
-    if (nextBtn && prevBtn && factCards.length) {
-      nextBtn.addEventListener("click", () => {
-        factIndex = (factIndex + 1) % factCards.length;
-        showFact(factIndex);
-        resetAutoAdvance();
-      });
-
-      prevBtn.addEventListener("click", () => {
-        factIndex = (factIndex - 1 + factCards.length) % factCards.length;
-        showFact(factIndex);
-        resetAutoAdvance();
-      });
-    }
-
+    toggleBtn.addEventListener('click', toggleTheme);
+    initTheme();
     showFact(factIndex);
-
-    let autoAdvance = setInterval(() => {
-      factIndex = (factIndex + 1) % factCards.length;
-      showFact(factIndex);
-    }, 10000);
+    nextBtn.addEventListener("click", () => {
+      showFact((factIndex + 1) % factCards.length, "right");
+      resetAutoAdvance();
+    });
+    prevBtn.addEventListener("click", () => {
+      showFact((factIndex - 1 + factCards.length) % factCards.length, "left");
+      resetAutoAdvance();
+    });
+    resetAutoAdvance();
   </script>
 </body>
 </html>
