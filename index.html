@@ -90,8 +90,8 @@
       <div class="experience-grid">
         <div class="exp-card">
           <h4>Records Management System</h4>
-          <p>Tracked inventory and digitized paper records across 6 offices.</p>
-          <span class="badge">Risk Mgmt</span>
+          <p>Developed reports tracking inventories and file plans across 250 USDA locations, improving compliance and transparency. Led collaboration with 50+ field offices and 43 State Plant Health Directors to implement federally mandated records management.</p>
+          <span class="badge">Project Mgmt</span>
           <span class="badge">Leadership</span>
         </div>
         <div class="exp-card">
@@ -132,4 +132,32 @@
     &copy; 2025 Aleksander R. Rodriguez Kozlowski
   </footer>
 
-  <scr
+  <script>
+    const ctx = document.getElementById('skillsChart').getContext('2d');
+    new Chart(ctx, {
+      type: 'radar',
+      data: {
+        labels: ['Planning', 'Risk', 'Agile', 'Communication', 'Analysis', 'Visualization', 'Root Cause', 'Budget', 'Workflow', 'Metrics'],
+        datasets: [{
+          label: 'Skill Level (1–10)',
+          data: [9, 8, 7, 9, 8, 8, 8, 7, 9, 8],
+          fill: true,
+          backgroundColor: 'rgba(3, 102, 214, 0.2)',
+          borderColor: 'rgba(3, 102, 214, 1)',
+          pointBackgroundColor: 'rgba(3, 102, 214, 1)'
+        }]
+      },
+      options: {
+        responsive: true,
+        scales: {
+          r: {
+            angleLines: { display: false },
+            suggestedMin: 0,
+            suggestedMax: 10
+          }
+        }
+      }
+    });
+  </script>
+</body>
+</html>
