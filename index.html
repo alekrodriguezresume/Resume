@@ -1,25 +1,81 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description"
+        content="Personal resume dashboard by Aleksander R. Rodriguez Kozlowski highlighting skills, experience, education, and contact information.">
   <title>Aleksander R. Rodriguez Kozlowski | Resume Dashboard</title>
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <!-- Performance hint -->
+  <link rel="preconnect" href="https://cdn.jsdelivr.net">
+
+  <!-- Combined CSS -->
   <style>
+    /* Root variables */
+    :root {
+      --primary-color: #02428b;
+      --secondary-color: #0366d6;
+      --bg-start: #f4f6f8;
+      --bg-end: #dce3ea;
+      --text-color: #333;
+      --card-bg: #fff;
+      --card-shadow: rgba(0, 0, 0, 0.1);
+      --font-family: 'Segoe UI', sans-serif;
+      --transition-speed: 0.3s;
+    }
+
+    /* Utility classes */
+    .u-text-center { text-align: center; }
+    .u-mt-1 { margin-top: 1rem; }
+
+    /* Global reset & base */
+    * { box-sizing: border-box; }
     body {
       margin: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background: linear-gradient(to bottom right, #f4f6f8, #dce3ea);
-      color: #333;
+      font-family: var(--font-family);
+      background: linear-gradient(to bottom right, var(--bg-start), var(--bg-end));
+      color: var(--text-color);
       text-align: center;
     }
+
+    /* Override for long text */
+    section p { text-align: left; }
+
+    /* Skip-link styles */
+    .skip-link {
+      position: absolute;
+      left: -999px;
+      width: 1px; height: 1px;
+      overflow: hidden;
+    }
+    .skip-link:focus {
+      left: 1rem;
+      top: 1rem;
+      width: auto; height: auto;
+      padding: 0.5rem;
+      background: var(--primary-color);
+      color: white;
+      z-index: 1000;
+      text-decoration: none;
+    }
+
+    /* Header */
     header {
-      background: linear-gradient(to right, #02428b, #0366d6);
+      background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
       color: white;
       padding: 2rem;
-      text-align: center;
       box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
     }
+    nav.toc a {
+      margin: 0 0.5rem;
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    nav.toc a:hover { text-decoration: underline; }
+
+    /* Main & Sections */
     main {
       max-width: 1100px;
       margin: auto;
@@ -30,21 +86,40 @@
       border-bottom: 1px solid #ccc;
       padding-bottom: 2rem;
     }
+    section:last-of-type { border-bottom: none; }
     h2 {
-      color: #02428b;
+      color: var(--primary-color);
+      margin-bottom: 1rem;
     }
+
+    /* Card wrapper for charts & contact */
     .chart-wrapper {
-      background: white;
+      background: var(--card-bg);
       padding: 1.5rem;
       border-radius: 10px;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      box-shadow: 0 5px 15px var(--card-shadow);
       margin: 1.5rem auto;
       max-width: 500px;
-      transition: transform 0.3s ease;
+      transition: transform var(--transition-speed) ease;
     }
     .chart-wrapper:hover {
       transform: scale(1.02);
     }
+    .chart-wrapper ul {
+      list-style: none;
+      padding: 0;
+      margin-bottom: 1rem;
+      font-size: 1rem;
+      text-align: left;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .chart-wrapper ul li::before {
+      content: '• ';
+      color: var(--secondary-color);
+    }
+
+    /* Experience grid & cards */
     .experience-grid {
       display: flex;
       flex-wrap: wrap;
@@ -52,107 +127,204 @@
       justify-content: center;
     }
     .exp-card {
-      background: white;
+      background: var(--card-bg);
       padding: 1.5rem;
       border-radius: 10px;
       width: 300px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-      transition: transform 0.3s ease;
+      box-shadow: 0 4px 12px var(--card-shadow);
+      transition: transform var(--transition-speed) ease;
     }
     .exp-card:hover {
       transform: translateY(-5px);
     }
-    .exp-card h4 {
+    .exp-card__title {
       margin: 0 0 0.5rem;
-      color: #02428b;
+      color: var(--primary-color);
+    }
+    .exp-card__badges {
+      margin-top: 0.5rem;
     }
     .badge {
       display: inline-block;
-      background: #0366d6;
+      background: var(--secondary-color);
       color: white;
       padding: 0.3rem 0.7rem;
       border-radius: 4px;
       font-size: 0.85rem;
-      margin: 0.2rem;
+      margin: 0.2rem 0.1rem;
     }
+
+    /* Address styling */
+    address {
+      font-style: normal;
+      line-height: 1.6;
+      margin: 0 auto;
+      max-width: 500px;
+    }
+
+    /* Footer */
     footer {
-      text-align: center;
       padding: 1rem;
       background: #eaeaea;
       font-size: 0.9rem;
     }
-    a {
-      color: #0366d6;
-      text-decoration: none;
-    }
-    a:hover {
-      text-decoration: underline;
+
+    /* Responsive breakpoints */
+    @media (max-width: 900px) {
+      .experience-grid {
+        flex-direction: column;
+        align-items: center;
+      }
     }
     @media (max-width: 600px) {
       .chart-wrapper { padding: 1rem; }
       .exp-card { width: 100%; }
     }
   </style>
+
+  <!-- Chart.js from CDN -->
+  <script defer src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
-  <header>
+  <a href="#main" class="skip-link">Skip to main content</a>
+
+  <header class="u-text-center">
     <h1>Aleksander R. Rodriguez Kozlowski</h1>
     <p>Analyst · Builder · Problem Solver</p>
+    <nav class="toc" aria-label="Table of contents">
+      <a href="#skills">Skills</a>
+      <a href="#experience">Experience</a>
+      <a href="#education">Education</a>
+      <a href="#contact">Contact</a>
+    </nav>
   </header>
 
-  <main>
-    <section>
+  <main id="main" tabindex="-1">
+    <section id="skills">
       <h2>Top Project Management Skills</h2>
       <div class="chart-wrapper">
-        <p>Where do I gauge my top PM skills?</p>
-        <canvas id="skillsChart" height="250"></canvas>
+        <ul>
+          <li>Project Planning</li>
+          <li>Stakeholder Engagement</li>
+          <li>Risk Management</li>
+          <li>Communication</li>
+          <li>Data Analysis</li>
+        </ul>
+        <canvas id="skillsChart" height="250"
+                role="img"
+                aria-label="Radar chart showing skill levels"></canvas>
+        <noscript>
+          <p>Skill levels (1–10): Project Planning: 6, Stakeholder Engagement: 6, Risk Management: 5, Communication: 6, Data Analysis: 5.</p>
+        </noscript>
       </div>
     </section>
 
-    <section>
+    <section id="experience">
       <h2>Project Experience</h2>
       <div class="experience-grid">
-        <div class="exp-card"><h4>Records Management System</h4><p>Directed a compliance initiative, leading the development of program analysis reports that tracked 344 inventories across 250 locations — strengthening federal records transparency and aligning with National Archives mandates.</p><span class="badge">Project Mgmt</span><span class="badge">Leadership</span></div>
-        <div class="exp-card"><h4>Stakeholder Engagement</h4><p>Built a dynamic dashboard using Microsoft Excel, Power BI, and Teams, equipping stakeholders with real-time project visibility and enabling data-informed decisions that enhanced program oversight and accountability.</p><span class="badge">Power BI</span><span class="badge">Process Optimization</span></div>
-        <div class="exp-card"><h4>Compliance Initiative</h4><p>Led coordination across 50+ field offices & 43 state directors, implementing file plans and identifying 20% records as historically significant — enhancing compliance and governance.</p><span class="badge">Audit Ready</span><span class="badge">File Plan</span></div>
+        <article class="exp-card">
+          <h3 class="exp-card__title">Records Management System</h3>
+          <p>
+            Directed a USDA-wide compliance initiative, leading the development of program analysis reports that tracked 344 inventories
+            across 250 locations—strengthening federal records transparency and aligning with National Archives mandates.
+          </p>
+          <div class="exp-card__badges">
+            <span class="badge">Project Mgmt</span>
+            <span class="badge">Leadership</span>
+          </div>
+        </article>
+        <article class="exp-card">
+          <h3 class="exp-card__title">Stakeholder Dashboard</h3>
+          <p>
+            Built dynamic dashboards using SharePoint and Power BI, equipping stakeholders with real-time project visibility and
+            enabling data-informed decisions that enhanced program oversight and accountability.
+          </p>
+          <div class="exp-card__badges">
+            <span class="badge">Power BI</span>
+            <span class="badge">Process Optimization</span>
+          </div>
+        </article>
+        <article class="exp-card">
+          <h3 class="exp-card__title">Compliance Initiative</h3>
+          <p>
+            Led coordination across 50+ field offices &amp; 43 state directors, implementing file plans and identifying 20% records
+            as historically significant—enhancing compliance and governance.
+          </p>
+          <div class="exp-card__badges">
+            <span class="badge">Audit Ready</span>
+            <span class="badge">File Plan</span>
+          </div>
+        </article>
       </div>
     </section>
 
-    <section>
-      <h2>Education & Certifications</h2>
+    <section id="education">
+      <h2>Education &amp; Certifications</h2>
       <div class="chart-wrapper">
         <p><strong>Arizona State University</strong></p>
-        <p>Bachelor of Science in Project Management | May 2025</p>
-        <p class="badge">PMP (In Progress)</p>
-        <p class="badge">Agile/Waterfall Fundamentals</p>
+        <p>B.S. in Project Management <br><em>Expected May 2025</em></p>
+        <div class="exp-card__badges u-mt-1">
+          <span class="badge">PMP (In Progress)</span>
+          <span class="badge">Agile Fundamentals</span>
+          <span class="badge">Emergency Management</span>
+        </div>
       </div>
     </section>
 
-    <section>
-      <h2>Contact & Links</h2>
+    <section id="contact">
+      <h2>Contact &amp; Links</h2>
       <div class="chart-wrapper">
-        <p><a href="mailto:alekrodriguezresume@gmail.com">alekrodriguezresume@gmail.com</a></p>
-        <p><a href="https://www.linkedin.com/in/alekrodriguez" target="_blank">LinkedIn Profile</a></p>
-        <p>Palm Bay, FL</p>
+        <address>
+          <p><a href="mailto:alekrodriguezresume@gmail.com">alekrodriguezresume@gmail.com</a></p>
+          <p><a href="https://www.linkedin.com/in/alekrodriguez"
+                target="_blank"
+                rel="noopener">LinkedIn Profile</a></p>
+          <p>Palm Bay, FL</p>
+        </address>
       </div>
     </section>
   </main>
 
-  <footer>&copy; 2025 Aleksander R. Rodriguez Kozlowski</footer>
+  <footer class="u-text-center">
+    &copy; 2025 Aleksander R. Rodriguez Kozlowski
+  </footer>
 
+  <!-- Combined JS -->
   <script>
-    new Chart(document.getElementById('skillsChart').getContext('2d'), {
-      type: 'radar',
-      data: {
-        labels: ['Project Planning', 'Stakeholder Engagement', 'Risk Management', 'Communication', 'Data Analysis'],
-        datasets: [{ label: 'Skill Level (1–10)', data: [6, 6, 5, 6, 5], fill:true, backgroundColor:'rgba(3,102,214,0.2)', borderColor:'rgba(3,102,214,1)', pointBackgroundColor:'rgba(3,102,214,1)' }]
-      },
-      options: {
-        responsive: true,
-        animation: { duration:1500, easing:'easeOutBounce' },
-        scales: { r: { angleLines:{display:false}, suggestedMin:0, suggestedMax:10 } },
-        plugins: { tooltip:{ callbacks:{ label: ctx => `${ctx.label}: ${ctx.raw}/10` } } }
-      }
+    window.addEventListener('DOMContentLoaded', () => {
+      const ctx = document.getElementById('skillsChart').getContext('2d');
+      new Chart(ctx, {
+        type: 'radar',
+        data: {
+          labels: ['Project Planning', 'Stakeholder Engagement', 'Risk Management', 'Communication', 'Data Analysis'],
+          datasets: [{
+            label: 'Skill Level (1–10)',
+            data: [6, 6, 5, 6, 5],
+            fill: true,
+            backgroundColor: 'rgba(3,102,214,0.2)',
+            borderColor: 'rgba(3,102,214,1)',
+            pointBackgroundColor: 'rgba(3,102,214,1)'
+          }]
+        },
+        options: {
+          responsive: true,
+          animation: { duration: 1500, easing: 'easeOutBounce' },
+          scales: {
+            r: {
+              angleLines: { display: false },
+              suggestedMin: 0,
+              suggestedMax: 10
+            }
+          },
+          plugins: {
+            tooltip: {
+              callbacks: {
+                label: ctx => `${ctx.label}: ${ctx.raw}/10`
+              }
+            }
+          }
+        }
+      });
     });
   </script>
 </body>
