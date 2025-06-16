@@ -73,22 +73,30 @@
       margin-bottom: 4rem;
     }
 
-    .skills-list {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-      gap: 0.5rem;
-      list-style: none;
-      padding: 0;
-    }
+    .skills-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
 
-    .skills-list li {
-      background: var(--link-color);
-      color: white;
-      padding: 0.6rem 1rem;
-      border-radius: 6px;
-      text-align: center;
-    }
+.skill-card {
+  background: var(--link-color);
+  color: white;
+  padding: 1rem 1.5rem;
+  border-radius: 10px;
+  font-weight: bold;
+  text-align: center;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+  min-width: 140px;
+  transition: transform 0.3s ease, background 0.3s ease;
+}
 
+.skill-card:hover {
+  transform: scale(1.05);
+  background: #02428b;
+}
     #cardStack {
       position: relative;
       max-width: 600px;
@@ -181,20 +189,21 @@
   </header>
 
   <main>
-    <section class="section" id="skills">
-      <h2>Skills</h2>
-      <ul class="skills-list">
-        <li>Project Planning</li>
-        <li>Risk Management</li>
-        <li>Agile & Scrum</li>
-        <li>Stakeholder Communication</li>
-        <li>Business Analysis</li>
-        <li>Data Visualization</li>
-        <li>Budget Tracking</li>
-        <li>Workflow Optimization</li>
-      </ul>
-    </section>
-
+   <section class="section" id="skills">
+  <h2>Skills</h2>
+  <div class="skills-grid">
+    <div class="skill-card">Project Planning</div>
+    <div class="skill-card">Risk Management</div>
+    <div class="skill-card">Agile & Scrum</div>
+    <div class="skill-card">Stakeholder Communication</div>
+    <div class="skill-card">Business Analysis</div>
+    <div class="skill-card">Data Visualization</div>
+    <div class="skill-card">Root Cause Analysis</div>
+    <div class="skill-card">Budget Tracking</div>
+    <div class="skill-card">Workflow Optimization</div>
+    <div class="skill-card">Performance Metrics</div>
+  </div>
+   </section>
     <section class="section" id="pm-facts">
       <h2>Project Management Fun Facts</h2>
       <div id="cardStack">
