@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Aleksander R. Rodriguez Kozlowski | Resume</title>
   <meta name="description" content="Resume, project management facts, and skills of Aleksander R. Rodriguez Kozlowski." />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <style>
     :root {
       --bg-color: white;
@@ -163,6 +164,12 @@
       font-size: 0.9rem;
     }
 
+    #chart-container {
+      width: 100%;
+      max-width: 600px;
+      margin: 2rem auto;
+    }
+
     @media (max-width: 600px) {
       .fact-card {
         font-size: 1rem;
@@ -208,25 +215,10 @@
       </div>
     </section>
 
-    <section class="section" id="pm-facts">
-      <h2>Project Management Fun Facts</h2>
-      <div id="cardStack">
-        <div class="fact-card active">The Great Pyramids were one of the earliest project management feats!<br><small><a href="https://www.pmi.org/learning/library/history-project-management-8024" target="_blank">PMI.org</a></small></div>
-        <div class="fact-card">Gantt charts date back over 100 years to the 1910s.<br><small><a href="https://www.gantt.com" target="_blank">Gantt.com</a></small></div>
-        <div class="fact-card">Only 35% of projects fully meet their goals.<br><small><a href="https://www.pmi.org/learning/library/pulse-of-the-profession-2020-12036" target="_blank">PMI Pulse 2020</a></small></div>
-        <div class="fact-card">Scope creep is a leading cause of project failure—it sneaks up when goals keep changing.<br><small><a href="https://www.pmi.org/learning/library/scope-creep-project-failure-11054" target="_blank">PMI.org</a></small></div>
-        <div class="fact-card">The word “project” comes from the Latin “projectum,” meaning to throw forth.<br><small><a href="https://www.etymonline.com/word/project" target="_blank">Etymology Dictionary</a></small></div>
-        <div class="fact-card">The Agile Manifesto was created at a ski resort in Utah in 2001.<br><small><a href="https://agilemanifesto.org" target="_blank">AgileManifesto.org</a></small></div>
-        <div class="fact-card">The PMP® certification is considered the gold standard for project managers worldwide.<br><small><a href="https://www.pmi.org/certifications/project-management-pmp" target="_blank">PMI.org</a></small></div>
-        <div class="fact-card">PERT charts were first developed by the U.S. Navy in the 1950s to manage missile projects.<br><small><a href="https://www.dau.edu/library/defense-atl/blog/PERT-and-the-Polaris-Program" target="_blank">DAU</a></small></div>
-        <div class="fact-card">“Death march projects” describe doomed efforts with unrealistic goals but no way out.<br><small><a href="https://www.goodreads.com/book/show/67842.Death_March" target="_blank">Edward Yourdon</a></small></div>
-        <div class="fact-card">Project managers spend up to 90% of their time communicating.<br><small><a href="https://www.pmi.org/learning/library/communication-skills-project-success-8334" target="_blank">PMI.org</a></small></div>
-        <div class="fact-card">Project management is used in every industry—from tech to tacos.<br><small><a href="https://www.pmi.org/learning/library/industry-perspectives-project-management-12028" target="_blank">PMI Insights</a></small></div>
-        <div class="fact-card">The World Bank called PM a core global workforce skill.<br><small><a href="https://blogs.worldbank.org/education/skills-global-workforce" target="_blank">World Bank</a></small></div>
-      </div>
-      <div class="controls">
-        <button id="prevFactBtn" aria-label="Previous fact">Previous</button>
-        <button id="nextFactBtn" aria-label="Next fact">Next</button>
+    <section class="section" id="chart-section">
+      <h2>Skills Overview</h2>
+      <div id="chart-container">
+        <canvas id="skillsChart"></canvas>
       </div>
     </section>
 
@@ -243,54 +235,31 @@
   </footer>
 
   <script>
-    const toggleBtn = document.getElementById("themeToggleBtn");
-    const nextBtn = document.getElementById("nextFactBtn");
-    const prevBtn = document.getElementById("prevFactBtn");
-    const cardContainer = document.getElementById("cardStack");
-    const factCards = cardContainer.querySelectorAll(".fact-card");
-    let factIndex = parseInt(localStorage.getItem("factIndex")) || 0;
-    let autoAdvance;
-
-    function initTheme() {
-      const saved = localStorage.getItem('theme') || 'light';
-      document.documentElement.setAttribute('data-theme', saved);
-      toggleBtn.textContent = saved === 'dark' ? '☀️' : '🌙';
-    }
-
-    function toggleTheme() {
-      const current = document.documentElement.getAttribute('data-theme');
-      const next = current === 'dark' ? 'light' : 'dark';
-      document.documentElement.setAttribute('data-theme', next);
-      localStorage.setItem('theme', next);
-      toggleBtn.textContent = next === 'dark' ? '☀️' : '🌙';
-    }
-
-    function showFact(index) {
-      factCards.forEach(card => card.classList.remove("active"));
-      factIndex = index;
-      factCards[factIndex].classList.add("active");
-      localStorage.setItem("factIndex", factIndex);
-    }
-
-    function resetAutoAdvance() {
-      clearInterval(autoAdvance);
-      autoAdvance = setInterval(() => {
-        showFact((factIndex + 1) % factCards.length);
-      }, 10000);
-    }
-
-    toggleBtn.addEventListener('click', toggleTheme);
-    initTheme();
-    showFact(factIndex);
-    nextBtn.addEventListener("click", () => {
-      showFact((factIndex + 1) % factCards.length);
-      resetAutoAdvance();
+    const ctx = document.getElementById('skillsChart').getContext('2d');
+    new Chart(ctx, {
+      type: 'radar',
+      data: {
+        labels: ['Planning', 'Risk', 'Agile', 'Communication', 'Analysis', 'Visualization', 'Root Cause', 'Budget', 'Workflow', 'Metrics'],
+        datasets: [{
+          label: 'Skill Proficiency (1–10)',
+          data: [9, 8, 7, 9, 8, 8, 8, 7, 9, 8],
+          fill: true,
+          backgroundColor: 'rgba(3, 102, 214, 0.2)',
+          borderColor: 'rgba(3, 102, 214, 1)',
+          pointBackgroundColor: 'rgba(3, 102, 214, 1)'
+        }]
+      },
+      options: {
+        responsive: true,
+        scales: {
+          r: {
+            angleLines: { display: false },
+            suggestedMin: 0,
+            suggestedMax: 10
+          }
+        }
+      }
     });
-    prevBtn.addEventListener("click", () => {
-      showFact((factIndex - 1 + factCards.length) % factCards.length);
-      resetAutoAdvance();
-    });
-    resetAutoAdvance();
   </script>
 </body>
 </html>
