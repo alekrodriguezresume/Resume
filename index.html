@@ -3,20 +3,22 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Aleksander R. Rodriguez Kozlowski | Dashboard</title>
+  <title>Aleksander R. Rodriguez Kozlowski | Resume Dashboard</title>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <style>
     body {
       margin: 0;
       font-family: 'Segoe UI', sans-serif;
-      background-color: #f4f6f8;
+      background: linear-gradient(to bottom right, #f4f6f8, #dce3ea);
       color: #333;
+      text-align: center;
     }
     header {
-      background-color: #02428b;
+      background: linear-gradient(to right, #02428b, #0366d6);
       color: white;
       padding: 2rem;
       text-align: center;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
     }
     main {
       max-width: 1100px;
@@ -29,18 +31,19 @@
       padding-bottom: 2rem;
     }
     h2 {
-      text-align: center;
       color: #02428b;
     }
     .chart-wrapper {
       background: white;
       padding: 1.5rem;
       border-radius: 10px;
-      box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-      margin-top: 1rem;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      margin: 1.5rem auto;
       max-width: 500px;
-      margin-left: auto;
-      margin-right: auto;
+      transition: transform 0.3s ease;
+    }
+    .chart-wrapper:hover {
+      transform: scale(1.02);
     }
     .experience-grid {
       display: flex;
@@ -51,9 +54,13 @@
     .exp-card {
       background: white;
       padding: 1.5rem;
-      border-radius: 8px;
+      border-radius: 10px;
       width: 300px;
-      box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      transition: transform 0.3s ease;
+    }
+    .exp-card:hover {
+      transform: translateY(-5px);
     }
     .exp-card h4 {
       margin: 0 0 0.5rem;
@@ -74,19 +81,22 @@
       background: #eaeaea;
       font-size: 0.9rem;
     }
+    a {
+      color: #0366d6;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
     @media (max-width: 600px) {
-      .chart-wrapper {
-        padding: 1rem;
-      }
-      .exp-card {
-        width: 100%;
-      }
+      .chart-wrapper { padding: 1rem; }
+      .exp-card { width: 100%; }
     }
   </style>
 </head>
 <body>
   <header>
-    <h1>Aleksander R. Rodriguez Kozlowski | Resume Dashboard</h1>
+    <h1>Aleksander R. Rodriguez Kozlowski</h1>
     <p>Analyst · Builder · Problem Solver</p>
   </header>
 
@@ -94,6 +104,7 @@
     <section>
       <h2>Top Project Management Skills</h2>
       <div class="chart-wrapper">
+        <p>Where do I gauge my top PM skills?</p>
         <canvas id="skillsChart" height="250"></canvas>
       </div>
     </section>
@@ -101,87 +112,46 @@
     <section>
       <h2>Project Experience</h2>
       <div class="experience-grid">
-        <div class="exp-card">
-          <h4>Records Management System</h4>
-          <p>Directed a USDA-wide compliance initiative, leading the development of program analysis reports that tracked 344 inventories across 250 locations—strengthening federal records transparency and aligning with National Archives mandates.</p>
-          <span class="badge">Project Mgmt</span>
-          <span class="badge">Leadership</span>
-        </div>
-        <div class="exp-card">
-          <h4>Stakeholder Dashboard</h4>
-          <p>Built dynamic dashboards using SharePoint and Power BI, equipping stakeholders with real-time project visibility and enabling data-informed decisions that enhanced program oversight and accountability.</p>
-          <span class="badge">Power BI</span>
-          <span class="badge">Process Optimization</span>
-        </div>
-        <div class="exp-card">
-          <h4>Compliance Initiative</h4>
-          <p>Led cross-functional coordination across 50+ field offices and 43 state directors, aligning efforts to implement federally mandated file plans, while identifying 20% of records as historically significant—improving long-term information governance.</p>
-          <span class="badge">Audit Ready</span>
-          <span class="badge">File Plan</span>
-        </div>
+        <div class="exp-card"><h4>Records Management System</h4><p>Directed a compliance initiative, leading the development of program analysis reports that tracked 344 inventories across 250 locations — strengthening federal records transparency and aligning with National Archives mandates.</p><span class="badge">Project Mgmt</span><span class="badge">Leadership</span></div>
+        <div class="exp-card"><h4>Stakeholder Engagement</h4><p>Built a dynamic dashboard using Microsoft Excel, Power BI, and Teams, equipping stakeholders with real-time project visibility and enabling data-informed decisions that enhanced program oversight and accountability.</p><span class="badge">Power BI</span><span class="badge">Process Optimization</span></div>
+        <div class="exp-card"><h4>Compliance Initiative</h4><p>Led coordination across 50+ field offices & 43 state directors, implementing file plans and identifying 20% records as historically significant — enhancing compliance and governance.</p><span class="badge">Audit Ready</span><span class="badge">File Plan</span></div>
       </div>
     </section>
 
     <section>
-      <h2>Certifications & Education</h2>
+      <h2>Education & Certifications</h2>
       <div class="chart-wrapper">
-        <p class="badge">PMP (in progress)</p>
-        <p class="badge">B.S. Project Management (May 2025)</p>
-        <p class="badge">Agile Fundamentals</p>
+        <p><strong>Arizona State University</strong></p>
+        <p>Bachelor of Science in Project Management | May 2025</p>
+        <p class="badge">PMP (In Progress)</p>
+        <p class="badge">Agile/Waterfall Fundamentals</p>
       </div>
     </section>
 
     <section>
       <h2>Contact & Links</h2>
-      <div class="chart-wrapper" style="text-align: center;">
+      <div class="chart-wrapper">
         <p><a href="mailto:alekrodriguezresume@gmail.com">alekrodriguezresume@gmail.com</a></p>
-        <p><a href="https://linkedin.com/in/alekrodriguez" target="_blank">LinkedIn Profile</a></p>
+        <p><a href="https://www.linkedin.com/in/alekrodriguez" target="_blank">LinkedIn Profile</a></p>
         <p>Palm Bay, FL</p>
       </div>
     </section>
   </main>
 
-  <footer>
-    &copy; 2025 Aleksander R. Rodriguez Kozlowski
-  </footer>
+  <footer>&copy; 2025 Aleksander R. Rodriguez Kozlowski</footer>
 
   <script>
-    const ctx = document.getElementById('skillsChart').getContext('2d');
-    new Chart(ctx, {
+    new Chart(document.getElementById('skillsChart').getContext('2d'), {
       type: 'radar',
       data: {
-        labels: ['Project Planning', 'Stakeholder Engagement', 'Risk Management', 'Strategic Communication', 'Data Analysis'],
-        datasets: [{
-          label: 'Skill Level (1–10)',
-          data: [6, 6, 5, 6, 5],
-          fill: true,
-          backgroundColor: 'rgba(3, 102, 214, 0.2)',
-          borderColor: 'rgba(3, 102, 214, 1)',
-          pointBackgroundColor: 'rgba(3, 102, 214, 1)'
-        }]
+        labels: ['Project Planning', 'Stakeholder Engagement', 'Risk Management', 'Communication', 'Data Analysis'],
+        datasets: [{ label: 'Skill Level (1–10)', data: [6, 6, 5, 6, 5], fill:true, backgroundColor:'rgba(3,102,214,0.2)', borderColor:'rgba(3,102,214,1)', pointBackgroundColor:'rgba(3,102,214,1)' }]
       },
       options: {
         responsive: true,
-        animation: {
-          duration: 1500,
-          easing: 'easeOutBounce'
-        },
-        scales: {
-          r: {
-            angleLines: { display: false },
-            suggestedMin: 0,
-            suggestedMax: 10
-          }
-        },
-        plugins: {
-          tooltip: {
-            callbacks: {
-              label: function(context) {
-                return `${context.label}: Skill Level ${context.raw}/10`;
-              }
-            }
-          }
-        }
+        animation: { duration:1500, easing:'easeOutBounce' },
+        scales: { r: { angleLines:{display:false}, suggestedMin:0, suggestedMax:10 } },
+        plugins: { tooltip:{ callbacks:{ label: ctx => `${ctx.label}: ${ctx.raw}/10` } } }
       }
     });
   </script>
