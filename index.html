@@ -5,23 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Aleksander R. Rodriguez Kozlowski | Resume</title>
   <meta name="description" content="Resume, project management facts, and skills of Aleksander R. Rodriguez Kozlowski." />
-      @media (max-width: 600px) {
-      .fact-card {
-        font-size: 1rem;
-        padding: 1rem;
-      }
-    
-      .skills-grid {
-        gap: 0.5rem;
-        padding: 0 1rem;
-      }
-    
-      .skill-card {
-        font-size: 0.9rem;
-        padding: 0.8rem;
-      }
-    }
-
   <style>
     :root {
       --bg-color: white;
@@ -109,11 +92,12 @@
       min-width: 140px;
       transition: transform 0.3s ease, background 0.3s ease;
     }
-    
+
     .skill-card:hover {
       transform: scale(1.05);
       background: #02428b;
     }
+
     #cardStack {
       position: relative;
       max-width: 600px;
@@ -145,14 +129,6 @@
       opacity: 1;
       transform: translateX(0);
       z-index: 1;
-    }
-
-    .fact-card.exit-left {
-      transform: translateX(-100%);
-    }
-
-    .fact-card.exit-right {
-      transform: translateX(100%);
     }
 
     .controls {
@@ -192,6 +168,16 @@
         font-size: 1rem;
         padding: 1rem;
       }
+
+      .skills-grid {
+        gap: 0.5rem;
+        padding: 0 1rem;
+      }
+
+      .skill-card {
+        font-size: 0.9rem;
+        padding: 0.8rem;
+      }
     }
   </style>
 </head>
@@ -206,21 +192,22 @@
   </header>
 
   <main>
-   <section class="section" id="skills">
-  <h2>Skills</h2>
-  <div class="skills-grid">
-    <div class="skill-card">Project Planning</div>
-    <div class="skill-card">Risk Management</div>
-    <div class="skill-card">Agile & Scrum</div>
-    <div class="skill-card">Stakeholder Communication</div>
-    <div class="skill-card">Business Analysis</div>
-    <div class="skill-card">Data Visualization</div>
-    <div class="skill-card">Root Cause Analysis</div>
-    <div class="skill-card">Budget Tracking</div>
-    <div class="skill-card">Workflow Optimization</div>
-    <div class="skill-card">Performance Metrics</div>
-  </div>
-   </section>
+    <section class="section" id="skills">
+      <h2>Skills</h2>
+      <div class="skills-grid">
+        <div class="skill-card">Project Planning</div>
+        <div class="skill-card">Risk Management</div>
+        <div class="skill-card">Agile & Scrum</div>
+        <div class="skill-card">Stakeholder Communication</div>
+        <div class="skill-card">Business Analysis</div>
+        <div class="skill-card">Data Visualization</div>
+        <div class="skill-card">Root Cause Analysis</div>
+        <div class="skill-card">Budget Tracking</div>
+        <div class="skill-card">Workflow Optimization</div>
+        <div class="skill-card">Performance Metrics</div>
+      </div>
+    </section>
+
     <section class="section" id="pm-facts">
       <h2>Project Management Fun Facts</h2>
       <div id="cardStack">
@@ -231,11 +218,11 @@
         <div class="fact-card">The word “project” comes from the Latin “projectum,” meaning to throw forth.<br><small><a href="https://www.etymonline.com/word/project" target="_blank">Etymology Dictionary</a></small></div>
         <div class="fact-card">The Agile Manifesto was created at a ski resort in Utah in 2001.<br><small><a href="https://agilemanifesto.org" target="_blank">AgileManifesto.org</a></small></div>
         <div class="fact-card">The PMP® certification is considered the gold standard for project managers worldwide.<br><small><a href="https://www.pmi.org/certifications/project-management-pmp" target="_blank">PMI.org</a></small></div>
-        <div class="fact-card">PERT charts were first developed by the U.S. Navy in the 1950s to manage missile projects.<br><small><a href="https://www.dau.edu/library/defense-atl/blog/PERT-and-the-Polaris-Program" target="_blank">Defense Acquisition University</a></small></div>
-        <div class="fact-card">“Death march projects” describe doomed efforts with unrealistic goals but no way out.<br><small><a href="https://www.goodreads.com/book/show/67842.Death_March" target="_blank">Edward Yourdon – *Death March*</a></small></div>
-        <div class="fact-card">Project managers spend up to 90% of their time communicating, not planning.<br><small><a href="https://www.pmi.org/learning/library/communication-skills-project-success-8334" target="_blank">PMI.org</a></small></div>
-        <div class="fact-card">Project management is used across every industry—from tech to tacos.<br><small><a href="https://www.pmi.org/learning/library/industry-perspectives-project-management-12028" target="_blank">PMI Industry Insights</a></small></div>
-        <div class="fact-card">The World Bank called project management a core global workforce skill.<br><small><a href="https://blogs.worldbank.org/education/skills-global-workforce" target="_blank">World Bank Blogs</a></small></div>
+        <div class="fact-card">PERT charts were first developed by the U.S. Navy in the 1950s to manage missile projects.<br><small><a href="https://www.dau.edu/library/defense-atl/blog/PERT-and-the-Polaris-Program" target="_blank">DAU</a></small></div>
+        <div class="fact-card">“Death march projects” describe doomed efforts with unrealistic goals but no way out.<br><small><a href="https://www.goodreads.com/book/show/67842.Death_March" target="_blank">Edward Yourdon</a></small></div>
+        <div class="fact-card">Project managers spend up to 90% of their time communicating.<br><small><a href="https://www.pmi.org/learning/library/communication-skills-project-success-8334" target="_blank">PMI.org</a></small></div>
+        <div class="fact-card">Project management is used in every industry—from tech to tacos.<br><small><a href="https://www.pmi.org/learning/library/industry-perspectives-project-management-12028" target="_blank">PMI Insights</a></small></div>
+        <div class="fact-card">The World Bank called PM a core global workforce skill.<br><small><a href="https://blogs.worldbank.org/education/skills-global-workforce" target="_blank">World Bank</a></small></div>
       </div>
       <div class="controls">
         <button id="prevFactBtn" aria-label="Previous fact">Previous</button>
@@ -278,18 +265,17 @@
       toggleBtn.textContent = next === 'dark' ? '☀️' : '🌙';
     }
 
-    function showFact(index, direction = "right") {
-      factCards.forEach(card => card.classList.remove("active", "exit-left", "exit-right"));
+    function showFact(index) {
+      factCards.forEach(card => card.classList.remove("active"));
       factIndex = index;
-      const card = factCards[factIndex];
-      card.classList.add("active");
+      factCards[factIndex].classList.add("active");
       localStorage.setItem("factIndex", factIndex);
     }
 
     function resetAutoAdvance() {
       clearInterval(autoAdvance);
       autoAdvance = setInterval(() => {
-        showFact((factIndex + 1) % factCards.length, "right");
+        showFact((factIndex + 1) % factCards.length);
       }, 10000);
     }
 
@@ -297,11 +283,11 @@
     initTheme();
     showFact(factIndex);
     nextBtn.addEventListener("click", () => {
-      showFact((factIndex + 1) % factCards.length, "right");
+      showFact((factIndex + 1) % factCards.length);
       resetAutoAdvance();
     });
     prevBtn.addEventListener("click", () => {
-      showFact((factIndex - 1 + factCards.length) % factCards.length, "left");
+      showFact((factIndex - 1 + factCards.length) % factCards.length);
       resetAutoAdvance();
     });
     resetAutoAdvance();
