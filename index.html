@@ -1,18 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description"
         content="Personal resume dashboard by Aleksander R. Rodriguez Kozlowski highlighting skills, experience, education, and contact information.">
   <title>Aleksander R. Rodriguez Kozlowski | Resume Dashboard</title>
 
-  <!-- Performance hint -->
-  <link rel="preconnect" href="https://cdn.jsdelivr.net">
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" />
 
-  <!-- Combined CSS -->
   <style>
-    /* Root variables */
     :root {
       --primary-color: #02428b;
       --secondary-color: #0366d6;
@@ -25,11 +22,6 @@
       --transition-speed: 0.3s;
     }
 
-    /* Utility classes */
-    .u-text-center { text-align: center; }
-    .u-mt-1 { margin-top: 1rem; }
-
-    /* Global reset & base */
     * { box-sizing: border-box; }
     body {
       margin: 0;
@@ -39,10 +31,11 @@
       text-align: center;
     }
 
-    /* Override for long text */
     section p { text-align: left; }
 
-    /* Skip-link styles */
+    .u-text-center { text-align: center; }
+    .u-mt-1 { margin-top: 1rem; }
+
     .skip-link {
       position: absolute;
       left: -999px;
@@ -60,7 +53,6 @@
       text-decoration: none;
     }
 
-    /* Header */
     header {
       background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
       color: white;
@@ -75,7 +67,6 @@
     }
     nav.toc a:hover { text-decoration: underline; }
 
-    /* Main & Sections */
     main {
       max-width: 1100px;
       margin: auto;
@@ -92,7 +83,6 @@
       margin-bottom: 1rem;
     }
 
-    /* Card wrapper for charts & contact */
     .chart-wrapper {
       background: var(--card-bg);
       padding: 1.5rem;
@@ -105,21 +95,24 @@
     .chart-wrapper:hover {
       transform: scale(1.02);
     }
+    .chart-wrapper ul,
+    .chart-wrapper p,
+    .chart-wrapper address {
+      text-align: center;
+      margin-left: auto;
+      margin-right: auto;
+    }
     .chart-wrapper ul {
       list-style: none;
       padding: 0;
       margin-bottom: 1rem;
       font-size: 1rem;
-      text-align: left;
-      margin-left: auto;
-      margin-right: auto;
     }
     .chart-wrapper ul li::before {
       content: '• ';
       color: var(--secondary-color);
     }
 
-    /* Experience grid & cards */
     .experience-grid {
       display: flex;
       flex-wrap: wrap;
@@ -154,7 +147,6 @@
       margin: 0.2rem 0.1rem;
     }
 
-    /* Address styling */
     address {
       font-style: normal;
       line-height: 1.6;
@@ -162,14 +154,12 @@
       max-width: 500px;
     }
 
-    /* Footer */
     footer {
       padding: 1rem;
       background: #eaeaea;
       font-size: 0.9rem;
     }
 
-    /* Responsive breakpoints */
     @media (max-width: 900px) {
       .experience-grid {
         flex-direction: column;
@@ -182,7 +172,6 @@
     }
   </style>
 
-  <!-- Chart.js from CDN -->
   <script defer src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
@@ -261,12 +250,8 @@
     <section id="education">
       <h2>Education &amp; Certifications</h2>
       <div class="chart-wrapper">
-        <p>
-          <strong>Arizona State University</strong>
-        </p>
-        <p>
-          B.S. in Project Management <br><em>May 2025</em>
-        </p>
+        <p><strong>Arizona State University</strong></p>
+        <p>B.S. in Project Management <br><em>Expected May 2025</em></p>
         <div class="exp-card__badges u-mt-1">
           <span class="badge">PMP (In Progress)</span>
           <span class="badge">Agile Fundamentals</span>
@@ -293,7 +278,6 @@
     &copy; 2025 Aleksander R. Rodriguez Kozlowski
   </footer>
 
-  <!-- Combined JS -->
   <script>
     window.addEventListener('DOMContentLoaded', () => {
       const ctx = document.getElementById('skillsChart').getContext('2d');
