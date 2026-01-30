@@ -6,22 +6,18 @@ I'm a detail-focused professional with experience in program analysis, quality m
 
 This website shows some of my GitHub projects, and it's built using HTML, CSS, and JavaScript. It automatically updates to show the latest work from my GitHub account.
 
-## Highlights
-
-- Built to show my personal projects and professional accomplishments
-- Easy to update and expand with a user-friendly layout
 
 ## About Me
 
 - **Graduated:** Bachelor’s of Science in Project Management, Arizona State University (2025)
 - **Current Role:** Management and Program Analyst – United Stated Department of Agriculture
-- **Focus Areas:** Program development, risk analysis, and team collaboration
+- **Core Areas:** Program analysis & development, people management/team building, records and information management, etc.
 - **Tools I Use:** GitHub, Power BI, Excel, SharePoint, ArcGIS, Fusion360, TunerPro, and more
-- **Creative Side:** I run a YouTube channel where I am currently restoring a 2004 Chevy Silverado 2500HD
+- **Creative Side:** I run a social media account that advocates for political education/outreach within the general public. (Not affiliated with any organization)
 
 ## Projects
 
-The "GitHub Projects" section below pulls directly from my GitHub account. It shows the work I’ve done on coding, automation, and other tools. Use the search bar to filter projects by name or keywords.
+[Coming Soon]
 
 ## How I Built This
 
@@ -33,15 +29,15 @@ This site is made with:
 
 ## View the Live Website
 
-[Visit the Live Website](https://alekrodriguezresume.github.io/Resume/)
+Visit the Live Website [Coming Soon] (#)
 
 ## Contact
 
 **Aleksander R. Rodriguez Kozlowski**  
-Palm Bay, Florida  
+Palm Bay, Florida (Willing to Relocate)
 LinkedIn: [Alek Rodriguez](https://linkedin.com/in/alekrodriguez)
 Email: [alekrodriguezresume@gmail.com](mailto:alekrodriguezresume@gmail.com)  
-GitHub: [alekrodriguezresume](https://github.com/alekrodriguezresume)
+GitHub: [alekrodriguezresume](#)
 
 ---
 
